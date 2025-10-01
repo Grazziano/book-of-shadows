@@ -51,12 +51,61 @@
             z-index: 0;
         }
         
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-login, .btn-register {
+            padding: 8px 15px;
+            border-radius: 3px;
+            font-family: 'EB Garamond', serif;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: 1px solid;
+        }
+        
+        .btn-login {
+            background-color: transparent;
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-register {
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            border-color: var(--highlight-color);
+        }
+        
+        .btn-login:hover, .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            filter: brightness(1.2);
+        }
+        
         .header-content {
             position: relative;
             z-index: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .auth-buttons {
+                margin-top: 10px;
+            }
         }
         
         .logo {
