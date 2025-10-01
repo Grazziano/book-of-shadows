@@ -161,7 +161,8 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(26, 10, 31, 0.9)), url('https://images.unsplash.com/photo-1509248961158-e54f6934749c');
+            /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(26, 10, 31, 0.9)), url('https://images.unsplash.com/photo-1509248961158-e54f6934749c'); */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(26, 10, 31, 0.9)), url("{{ asset('images/haunted-mansion-hero.jpg') }}");
             background-size: cover;
             background-position: center;
             border-bottom: 3px solid var(--highlight-color);
