@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrbanLegendsController;
 use App\Http\Controllers\HorrorStoriesController;
+use App\Http\Controllers\CreateLegendController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +13,9 @@ Route::get('/', function () {
 Route::get('/lendas-urbanas', [UrbanLegendsController::class, 'index'])->name('urban-legends');
 
 Route::get('/contos-de-terror', [HorrorStoriesController::class, 'index'])->name('horror-stories');
+
+Route::get('/crie-sua-lenda', [CreateLegendController::class, 'create'])->name('create-legend');
+Route::post('/crie-sua-lenda', [CreateLegendController::class, 'store'])->name('store-legend');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
