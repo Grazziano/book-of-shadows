@@ -140,7 +140,7 @@
                 </li>
                 <hr class="sidebar-divider d-none d-md-block">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="/">
                         <i class="fas fa-fw fa-arrow-left me-2"></i>
                         Voltar ao Site
                     </a>
