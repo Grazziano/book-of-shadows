@@ -1,8 +1,11 @@
-<style>
-    .logo {
-        cursor: pointer;
-    }
-</style>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Header CSS -->
+<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+
 <header>
     <div class="container header-content">
         <h1 class="logo flicker" onclick="window.location.href = '/';">Book of Shadows</h1>
