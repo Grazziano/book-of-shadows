@@ -5,7 +5,7 @@
             <ul>
                 <li><a href="/">Início</a></li>
                 <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
-                <li><a href="#">Contos de Terror</a></li>
+                <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
                 <li><a href="#">Crie sua Lenda</a></li>
                 <li><a href="#">Boletim Macabro</a></li>
                 @if(auth()->check())
