@@ -58,7 +58,7 @@
             z-index: 1;
         }
         
-        .btn-login, .btn-register {
+        .btn-login, .btn-register, .btn-logout {
             padding: 8px 15px;
             border-radius: 3px;
             font-family: 'EB Garamond', serif;
@@ -69,6 +69,7 @@
             letter-spacing: 1px;
             font-size: 0.9rem;
             border: 1px solid;
+            cursor: pointer;
         }
         
         .btn-login {
@@ -83,7 +84,13 @@
             border-color: var(--highlight-color);
         }
         
-        .btn-login:hover, .btn-register:hover {
+        .btn-logout {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-login:hover, .btn-register:hover, .btn-logout:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px var(--shadow-color);
             filter: brightness(1.2);

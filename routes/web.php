@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UrbanLegendsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/lendas-urbanas', [UrbanLegendsController::class, 'index'])->name('urban-legends');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
