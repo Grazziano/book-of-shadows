@@ -429,7 +429,7 @@
                             @endforeach
                         </div>
 
-                        <a href="#" class="read-more-btn">Ler Conto Completo</a>
+                        <a href="{{ route('horror-stories.show', $story['id']) }}" class="read-more-btn">Ler Conto Completo</a>
                     </div>
                 </article>
             @endforeach
