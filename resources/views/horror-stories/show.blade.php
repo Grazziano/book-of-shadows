@@ -1,8 +1,9 @@
-@extends('layouts.app')
-
-@section('title', $story['title'] . ' - Contos de Terror')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ $story['title'] }} - Contos de Terror
+        </h2>
+    </x-slot>
 <div class="horror-story-show">
     <!-- Header da História -->
     <div class="story-header">
@@ -310,4 +311,4 @@
     animation-delay: 0.2s;
 }
 </style>
-@endsection
+</x-app-layout>
