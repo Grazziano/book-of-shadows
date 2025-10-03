@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Legend;
 use Illuminate\Http\Request;
 
 class CreateLegendController extends Controller
@@ -30,8 +31,15 @@ class CreateLegendController extends Controller
             'moral' => 'nullable|string|max:500',
         ]);
 
-        // Por enquanto, apenas retorna uma mensagem de sucesso
-        // Em uma implementação real, salvaria no banco de dados
-        return redirect()->route('create-legend')->with('success', 'Sua lenda foi criada com sucesso! Obrigado por compartilhar sua história conosco.');
+        try {
+            // Cria uma nova lenda no banco de dados
+            Legend::create($validated);
+
+            return redirect()->route('create-legend')->with('success', 'Sua lenda foi criada com sucesso! Obrigado por compartilhar sua história conosco.');
+        } catch (\Exception $e) {
+            return redirect()->route('create-legend')
+                ->withInput()
+                ->with('error', 'Ocorreu um erro ao salvar sua lenda. Tente novamente.');
+        }
     }
 }
