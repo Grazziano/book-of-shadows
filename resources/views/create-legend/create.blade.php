@@ -101,6 +101,10 @@
             margin-bottom: 1.5rem;
         }
 
+        .form-group label {
+            color: var(--text-color);
+        }
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -212,7 +216,8 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: var(--secondary-color);
+            /* color: var(--secondary-color); */
+            color: var(--highlight-color);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
@@ -246,7 +251,7 @@
 
     <div class="container">
         <a href="/" class="back-link">← Voltar ao Início</a>
-        
+
         <div class="header">
             <h1>Crie sua Lenda</h1>
             <p>Compartilhe sua história sombria com o mundo</p>
@@ -271,13 +276,13 @@
         <div class="form-container">
             <form action="{{ route('store-legend') }}" method="POST">
                 @csrf
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="title">Título da Lenda *</label>
                         <input type="text" id="title" name="title" value="{{ old('title') }}" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="author">Seu Nome *</label>
                         <input type="text" id="author" name="author" value="{{ old('author') }}" required>
@@ -289,7 +294,7 @@
                         <label for="location">Local da Lenda *</label>
                         <input type="text" id="location" name="location" value="{{ old('location') }}" placeholder="Ex: São Paulo, SP" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="category">Categoria *</label>
                         <select id="category" name="category" required>
@@ -338,12 +343,12 @@
         // Sistema de avaliação por estrelas
         const stars = document.querySelectorAll('.star');
         const dangerLevelInput = document.getElementById('danger_level');
-        
+
         stars.forEach(star => {
             star.addEventListener('click', function() {
                 const rating = parseInt(this.dataset.rating);
                 dangerLevelInput.value = rating;
-                
+
                 stars.forEach((s, index) => {
                     if (index < rating) {
                         s.classList.add('active');
@@ -352,10 +357,10 @@
                     }
                 });
             });
-            
+
             star.addEventListener('mouseover', function() {
                 const rating = parseInt(this.dataset.rating);
-                
+
                 stars.forEach((s, index) => {
                     if (index < rating) {
                         s.style.color = 'var(--accent-color)';
@@ -365,10 +370,10 @@
                 });
             });
         });
-        
+
         document.querySelector('.danger-stars').addEventListener('mouseleave', function() {
             const currentRating = parseInt(dangerLevelInput.value);
-            
+
             stars.forEach((s, index) => {
                 if (index < currentRating) {
                     s.style.color = 'var(--accent-color)';
@@ -377,7 +382,7 @@
                 }
             });
         });
-        
+
         // Definir rating inicial
         const initialRating = parseInt(dangerLevelInput.value) || 1;
         stars.forEach((s, index) => {
@@ -385,13 +390,13 @@
                 s.classList.add('active');
             }
         });
-        
+
         // Animação de entrada dos elementos do formulário
         const formGroups = document.querySelectorAll('.form-group');
         formGroups.forEach((group, index) => {
             group.style.opacity = '0';
             group.style.transform = 'translateY(20px)';
-            
+
             setTimeout(() => {
                 group.style.transition = 'all 0.5s ease';
                 group.style.opacity = '1';

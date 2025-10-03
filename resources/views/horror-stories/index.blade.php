@@ -40,7 +40,7 @@
         .page-header {
             text-align: center;
             padding: 80px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="manuscript" patternUnits="userSpaceOnUse" width="100" height="20"><line x1="0" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23manuscript)"/></svg>');
             background-size: cover;
             background-position: center;
@@ -63,8 +63,10 @@
         .page-title {
             font-family: 'Nosifer', cursive;
             font-size: 4rem;
-            color: var(--primary-color);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            /* color: var(--primary-color);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8); */
+            color: var(--highlight-color);
+            text-shadow: 0 0 20px rgba(247, 37, 133, 0.5);
             margin-bottom: 20px;
             animation: flicker 3s ease-in-out infinite alternate;
             position: relative;
@@ -72,11 +74,11 @@
         }
 
         @keyframes flicker {
-            0%, 100% { 
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px var(--primary-color); 
+            0%, 100% {
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px var(--primary-color);
             }
-            50% { 
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color); 
+            50% {
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
             }
         }
 
@@ -279,7 +281,8 @@
 
         .back-button:hover {
             background: transparent;
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
+            color: var(--accent-color);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(139,0,0,0.4);
         }
@@ -320,18 +323,18 @@
             .page-title {
                 font-size: 2.8rem;
             }
-            
+
             .stories-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
                 padding: 50px 0;
             }
-            
+
             .story-card {
                 margin: 0 10px;
                 transform: rotate(0deg);
             }
-            
+
             .story-card:nth-child(even) {
                 transform: rotate(0deg);
             }
@@ -369,7 +372,7 @@
         <div class="container">
             <h1 class="page-title">Contos de Terror</h1>
             <p class="page-subtitle">
-                Mergulhe nas páginas mais sombrias da literatura de horror. 
+                Mergulhe nas páginas mais sombrias da literatura de horror.
                 Cada conto é uma jornada através dos medos mais profundos da alma humana.
             </p>
         </div>
@@ -377,7 +380,7 @@
 
     <div class="container">
         <a href="/" class="back-button">← Voltar ao Início</a>
-        
+
         <div class="filter-section">
             <h3 style="color: var(--text-color); margin-bottom: 20px; font-family: 'Butcherman', cursive;">Filtrar por Categoria</h3>
             <div class="filter-buttons">
@@ -388,26 +391,26 @@
                 <button class="filter-btn" data-filter="Mistério">Mistério</button>
             </div>
         </div>
-        
+
         <div class="stories-grid">
             @foreach($stories as $index => $story)
                 <article class="story-card loading-animation" data-category="{{ $story['category'] }}" style="animation-delay: {{ $index * 0.15 }}s">
                     <div class="horror-level horror-{{ strtolower($story['horror_level']) }}">
                         {{ $story['horror_level'] }}
                     </div>
-                    
+
                     <header class="story-header">
                         <h2 class="story-title">{{ $story['title'] }}</h2>
                         <p class="story-author">por {{ $story['author'] }}</p>
                     </header>
-                    
+
                     <div class="story-content">
                         <p class="story-summary">{{ $story['summary'] }}</p>
-                        
+
                         <blockquote class="story-preview">
                             "{{ $story['content_preview'] }}"
                         </blockquote>
-                        
+
                         <div class="story-meta">
                             <span class="meta-item">
                                 📖 {{ $story['reading_time'] }}
@@ -419,13 +422,13 @@
                                 📅 {{ date('d/m/Y', strtotime($story['published_date'])) }}
                             </span>
                         </div>
-                        
+
                         <div class="story-tags">
                             @foreach($story['tags'] as $tag)
                                 <span class="tag">{{ $tag }}</span>
                             @endforeach
                         </div>
-                        
+
                         <a href="#" class="read-more-btn">Ler Conto Completo</a>
                     </div>
                 </article>
@@ -444,9 +447,9 @@
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 // Add active class to clicked button
                 button.classList.add('active');
-                
+
                 const filterValue = button.getAttribute('data-filter');
-                
+
                 storyCards.forEach(card => {
                     if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                         card.style.display = 'block';
@@ -483,7 +486,7 @@
                 this.style.transform = 'rotate(0deg) translateY(-15px) scale(1.02)';
                 this.style.zIndex = '10';
             });
-            
+
             card.addEventListener('mouseleave', function() {
                 const isEven = Array.from(storyCards).indexOf(this) % 2 === 1;
                 const rotation = isEven ? '0.5deg' : '-0.5deg';
@@ -496,7 +499,7 @@
         const title = document.querySelector('.page-title');
         const originalText = title.textContent;
         title.textContent = '';
-        
+
         let i = 0;
         const typeWriter = () => {
             if (i < originalText.length) {
@@ -505,7 +508,7 @@
                 setTimeout(typeWriter, 100);
             }
         };
-        
+
         setTimeout(typeWriter, 500);
     </script>
 </body>

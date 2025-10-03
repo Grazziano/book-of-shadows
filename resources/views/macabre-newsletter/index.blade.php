@@ -62,7 +62,8 @@
         .edition-info {
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
-            color: var(--secondary-color);
+            /* color: var(--secondary-color); */
+            color: var(--accent-color);
             font-style: italic;
             margin-bottom: 1rem;
         }
@@ -151,7 +152,8 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
-            color: var(--secondary-color);
+            /* color: var(--secondary-color); */
+            color: var(--accent-color);
         }
 
         .featured-summary {
@@ -275,7 +277,8 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: var(--secondary-color);
+            /* color: var(--secondary-color); */
+            color: var(--highlight-color);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
@@ -324,7 +327,7 @@
 
     <div class="container">
         <a href="/" class="back-link">← Voltar ao Início</a>
-        
+
         <header class="newspaper-header">
             <h1 class="newspaper-title">Boletim Macabro</h1>
             <div class="edition-info">{{ $newsletter['edition'] }}</div>
@@ -374,7 +377,7 @@
             const title = document.querySelector('.newspaper-title');
             const originalText = title.textContent;
             title.textContent = '';
-            
+
             let i = 0;
             const typeWriter = () => {
                 if (i < originalText.length) {
@@ -383,7 +386,7 @@
                     setTimeout(typeWriter, 100);
                 }
             };
-            
+
             setTimeout(typeWriter, 1000);
         });
 
@@ -411,7 +414,7 @@
             badge.addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.1)';
             });
-            
+
             badge.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1)';
             });

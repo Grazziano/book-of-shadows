@@ -47,8 +47,10 @@
         .page-title {
             font-family: 'Nosifer', cursive;
             font-size: 3.5rem;
-            color: var(--primary-color);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            /* color: var(--primary-color);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8); */
+            color: var(--highlight-color);
+            text-shadow: 0 0 20px rgba(247, 37, 133, 0.5);
             margin-bottom: 20px;
             animation: glow 2s ease-in-out infinite alternate;
         }
@@ -190,7 +192,8 @@
 
         .back-button:hover {
             background: transparent;
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
+            color: var(--accent-color);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(139,0,0,0.3);
         }
@@ -199,13 +202,13 @@
             .page-title {
                 font-size: 2.5rem;
             }
-            
+
             .legends-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
                 padding: 40px 0;
             }
-            
+
             .legend-card {
                 margin: 0 10px;
             }
@@ -231,7 +234,7 @@
         <div class="container">
             <h1 class="page-title">Lendas Urbanas</h1>
             <p class="page-subtitle">
-                Explore as histórias mais assombradas e misteriosas que rondam nosso mundo. 
+                Explore as histórias mais assombradas e misteriosas que rondam nosso mundo.
                 Cada lenda carrega consigo o peso do medo e da curiosidade humana.
             </p>
         </div>
@@ -239,22 +242,22 @@
 
     <div class="container">
         <a href="/" class="back-button">← Voltar ao Início</a>
-        
+
         <div class="legends-grid">
             @foreach($legends as $index => $legend)
                 <div class="legend-card loading-animation" style="animation-delay: {{ $index * 0.1 }}s">
                     <div class="danger-level danger-{{ strtolower($legend['danger_level']) }}">
                         {{ $legend['danger_level'] }}
                     </div>
-                    
+
                     <div class="legend-image">
                         👻
                     </div>
-                    
+
                     <div class="legend-content">
                         <h3 class="legend-title">{{ $legend['title'] }}</h3>
                         <p class="legend-summary">{{ $legend['summary'] }}</p>
-                        
+
                         <div class="legend-meta">
                             <span class="meta-tag">📍 {{ $legend['origin'] }}</span>
                             <span class="meta-tag">🏷️ {{ $legend['category'] }}</span>
@@ -290,7 +293,7 @@
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.02)';
             });
-            
+
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
