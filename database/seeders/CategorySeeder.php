@@ -59,6 +59,64 @@ class CategorySeeder extends Seeder
                 'created_at' => $timestamp,
                 'updated_at' => $timestamp,
             ],
+
+            // NOVAS CATEGORIAS
+            [
+                'name' => 'Folclore Brasileiro',
+                'description' => 'Lendas e criaturas do Brasil como Saci, Curupira, Iara e outros mitos regionais.',
+                'slug' => Str::slug('Folclore Brasileiro'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Folclore Mundial',
+                'description' => 'Histórias e criaturas lendárias de outras culturas como Baba Yaga, Krampus e Wendigo.',
+                'slug' => Str::slug('Folclore Mundial'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Experiências Paranormais',
+                'description' => 'Relatos reais de pessoas que viveram situações inexplicáveis e assustadoras.',
+                'slug' => Str::slug('Experiências Paranormais'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'True Crime',
+                'description' => 'Casos criminais reais com conexão ao terror, mistério e serial killers.',
+                'slug' => Str::slug('True Crime'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Datas Especiais',
+                'description' => 'Conteúdos relacionados ao Dia das Bruxas, Sexta-feira 13 e Dia dos Mortos.',
+                'slug' => Str::slug('Datas Especiais'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Criaturas Sobrenaturais',
+                'description' => 'Exploração de monstros, fantasmas, vampiros, lobisomens, múmias e mais.',
+                'slug' => Str::slug('Criaturas Sobrenaturais'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Creepypastas',
+                'description' => 'Lendas modernas da internet e histórias virais de terror.',
+                'slug' => Str::slug('Creepypastas'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
+            [
+                'name' => 'Mistérios Não Resolvidos',
+                'description' => 'Casos estranhos e sem explicação, do paranormal ao crime.',
+                'slug' => Str::slug('Mistérios Não Resolvidos'),
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ],
         ];
 
         DB::table('categories')->insert($categories);
