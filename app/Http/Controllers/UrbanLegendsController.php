@@ -3,13 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class UrbanLegendsController extends Controller
 {
     public function index()
     {
-        // Dados fictícios de lendas urbanas para demonstração
-        $legends = [
+        // Buscar posts publicados do banco de dados
+        $posts = Post::with(['category', 'tags', 'user'])
+            ->published()
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        // Mapear posts para o formato esperado pela view
+        $legends = $posts->map(function ($post) {
+            return [
+                'id' => $post->id,
+                'title' => $post->title,
+                'summary' => $post->excerpt,
+                'image' => $post->featured_image ?? '/images/default-legend.jpg',
+                'category' => $post->category->name ?? 'Sem Categoria',
+                'origin' => 'Brasil', // Valor padrão
+                'danger_level' => $this->getRandomDangerLevel()
+            ];
+        })->toArray();
+
+        // Fallback para dados fictícios se não houver posts
+        if (empty($legends)) {
+            $legends = $this->getFictionalLegends();
+        }
+
+        return view('urban-legends.index', compact('legends'));
+    }
+
+    /**
+     * Retorna um nível de perigo aleatório
+     */
+    private function getRandomDangerLevel()
+    {
+        $levels = ['Baixo', 'Médio', 'Alto', 'Extremo'];
+        return $levels[array_rand($levels)];
+    }
+
+    /**
+     * Dados fictícios de fallback
+     */
+    private function getFictionalLegends()
+    {
+        return [
             [
                 'id' => 1,
                 'title' => 'A Loira do Banheiro',
@@ -65,7 +106,28 @@ class UrbanLegendsController extends Controller
                 'danger_level' => 'Alto'
             ]
         ];
+    }
 
-        return view('urban-legends.index', compact('legends'));
+    public function show($id)
+    {
+        // Buscar post específico do banco de dados
+        $post = Post::with(['category', 'tags', 'user'])
+            ->published()
+            ->findOrFail($id);
+
+        $legend = [
+            'id' => $post->id,
+            'title' => $post->title,
+            'summary' => $post->excerpt,
+            'full_content' => $post->content,
+            'image' => $post->featured_image ?? '/images/default-legend.jpg',
+            'category' => $post->category->name ?? 'Sem Categoria',
+            'origin' => 'Brasil', // Valor padrão
+            'danger_level' => $this->getRandomDangerLevel(),
+            'published_date' => $post->published_at->format('Y-m-d'),
+            'tags' => $post->tags->pluck('name')->toArray()
+        ];
+
+        return view('urban-legends.show', compact('legend'));
     }
 }
