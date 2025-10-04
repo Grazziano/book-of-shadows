@@ -28,12 +28,26 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $categories = Category::all();
         $tags = Tag::all();
         
-        return view('admin.posts.create', compact('categories', 'tags'));
+        // Verificar se há um tipo específico sendo solicitado
+        $type = $request->get('type');
+        $preselectedCategory = null;
+        
+        if ($type === 'horror') {
+            $preselectedCategory = Category::where('name', 'like', '%terror%')
+                                         ->orWhere('name', 'like', '%horror%')
+                                         ->first();
+        } elseif ($type === 'legend') {
+            $preselectedCategory = Category::where('name', 'like', '%lenda%')
+                                         ->orWhere('name', 'like', '%urbana%')
+                                         ->first();
+        }
+        
+        return view('admin.posts.create', compact('categories', 'tags', 'type', 'preselectedCategory'));
     }
 
     /**
@@ -49,6 +63,7 @@ class PostController extends Controller
             'tags.*' => 'exists:tags,id',
             'featured_image' => 'nullable|image|max:2048',
             'status' => 'required|in:draft,published',
+            'post_type' => 'nullable|in:horror,legend',
         ]);
         
         $post = new Post();
@@ -75,8 +90,16 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);
         }
         
+        // Determinar mensagem de sucesso baseada no tipo de post
+        $successMessage = 'Post criado com sucesso!';
+        if ($request->post_type === 'horror') {
+            $successMessage = 'Conto de terror criado com sucesso! Ele aparecerá na seção de Contos de Terror.';
+        } elseif ($request->post_type === 'legend') {
+            $successMessage = 'Lenda urbana criada com sucesso! Ela aparecerá na seção de Lendas Urbanas.';
+        }
+        
         return redirect()->route('admin.posts.index')
-                        ->with('success', 'Post criado com sucesso!');
+                        ->with('success', $successMessage);
     }
 
     /**

@@ -76,6 +76,49 @@
         </div>
     </div>
 
+    <!-- Seção de Criação Rápida -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Criação Rápida</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-dark text-white h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-ghost me-2"></i>
+                                        Novo Conto de Terror
+                                    </h5>
+                                    <p class="card-text flex-grow-1">Crie uma nova história assombrada para aterrorizar os leitores.</p>
+                                    <a href="{{ route('admin.posts.create', ['type' => 'horror']) }}" class="btn btn-danger">
+                                        <i class="fas fa-plus me-1"></i> Criar Conto
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-secondary text-white h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-eye me-2"></i>
+                                        Nova Lenda Urbana
+                                    </h5>
+                                    <p class="card-text flex-grow-1">Documente uma nova lenda urbana misteriosa e intrigante.</p>
+                                    <a href="{{ route('admin.posts.create', ['type' => 'legend']) }}" class="btn btn-warning">
+                                        <i class="fas fa-plus me-1"></i> Criar Lenda
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row mt-4">
         <div class="col-12">
             <div class="card shadow mb-4">

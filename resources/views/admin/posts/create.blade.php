@@ -9,38 +9,103 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Criar Novo Post</h1>
+        <h1>
+            @if(isset($type) && $type === 'horror')
+                <i class="fas fa-ghost me-2"></i> Criar Novo Conto de Terror
+            @elseif(isset($type) && $type === 'legend')
+                <i class="fas fa-eye me-2"></i> Criar Nova Lenda Urbana
+            @else
+                Criar Novo Post
+            @endif
+        </h1>
         <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-1"></i> Voltar
         </a>
     </div>
 
+    @if(isset($type))
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-info-circle me-2"></i>
+            @if($type === 'horror')
+                Você está criando um <strong>Conto de Terror</strong>. Este post aparecerá na seção de Contos de Terror do site.
+            @elseif($type === 'legend')
+                Você está criando uma <strong>Lenda Urbana</strong>. Este post aparecerá na seção de Lendas Urbanas do site.
+            @endif
+        </div>
+    @endif
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Informações do Post</h6>
+            <h6 class="m-0 font-weight-bold text-primary">
+                @if(isset($type) && $type === 'horror')
+                    Informações do Conto de Terror
+                @elseif(isset($type) && $type === 'legend')
+                    Informações da Lenda Urbana
+                @else
+                    Informações do Post
+                @endif
+            </h6>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
+                @if(isset($type))
+                    <input type="hidden" name="post_type" value="{{ $type }}">
+                @endif
+                
                 <div class="mb-3">
-                    <label for="title" class="form-label">Título *</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+                    <label for="title" class="form-label">
+                        @if(isset($type) && $type === 'horror')
+                            Título do Conto *
+                        @elseif(isset($type) && $type === 'legend')
+                            Nome da Lenda *
+                        @else
+                            Título *
+                        @endif
+                    </label>
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required
+                           @if(isset($type) && $type === 'horror')
+                               placeholder="Ex: A Casa Assombrada da Rua das Flores"
+                           @elseif(isset($type) && $type === 'legend')
+                               placeholder="Ex: O Homem do Saco"
+                           @endif>
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 
                 <div class="mb-3">
-                    <label for="excerpt" class="form-label">Resumo</label>
-                    <textarea class="form-control @error('excerpt') is-invalid @enderror" id="excerpt" name="excerpt" rows="3">{{ old('excerpt') }}</textarea>
+                    <label for="excerpt" class="form-label">
+                        @if(isset($type) && $type === 'horror')
+                            Resumo da História
+                        @elseif(isset($type) && $type === 'legend')
+                            Resumo da Lenda
+                        @else
+                            Resumo
+                        @endif
+                    </label>
+                    <textarea class="form-control @error('excerpt') is-invalid @enderror" id="excerpt" name="excerpt" rows="3"
+                              @if(isset($type) && $type === 'horror')
+                                  placeholder="Descreva brevemente o que acontece neste conto de terror..."
+                              @elseif(isset($type) && $type === 'legend')
+                                  placeholder="Descreva brevemente esta lenda urbana..."
+                              @endif>{{ old('excerpt') }}</textarea>
                     @error('excerpt')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 
                 <div class="mb-3">
-                    <label for="content" class="form-label">Conteúdo *</label>
+                    <label for="content" class="form-label">
+                        @if(isset($type) && $type === 'horror')
+                            História Completa *
+                        @elseif(isset($type) && $type === 'legend')
+                            Descrição Completa da Lenda *
+                        @else
+                            Conteúdo *
+                        @endif
+                    </label>
                     <textarea class="form-control summernote @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content') }}</textarea>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -53,7 +118,8 @@
                         <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
                             <option value="">Selecione uma categoria</option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                <option value="{{ $category->id }}" 
+                                    {{ (old('category_id') == $category->id) || (isset($preselectedCategory) && $preselectedCategory && $preselectedCategory->id == $category->id) ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -61,6 +127,15 @@
                         @error('category_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        @if(isset($type))
+                            <div class="form-text">
+                                @if($type === 'horror')
+                                    Categoria sugerida para contos de terror foi pré-selecionada.
+                                @elseif($type === 'legend')
+                                    Categoria sugerida para lendas urbanas foi pré-selecionada.
+                                @endif
+                            </div>
+                        @endif
                     </div>
                     
                     <div class="col-md-6 mb-3">
