@@ -1,61 +1,122 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📖 Book of Shadows 🕯️🎃
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Um site temático de **Halloween** desenvolvido em **Laravel** com **Bootstrap**, que reúne **lendas, contos macabros** e permite que usuários publiquem suas próprias histórias assustadoras.  
 
-## About Laravel
+Além disso, o projeto possui um **Boletim Macabro** com relatos enviados pela comunidade, e um **dashboard administrativo** para gerenciar postagens, categorias e tags.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Funcionalidades
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- 📚 **Lendas e contos** – catálogo de histórias e mitos de terror.  
+- ✍️ **Publicação de histórias** – usuários podem compartilhar seus próprios relatos.  
+- 📰 **Boletim Macabro** – seção especial com relatos da comunidade.  
+- 🛠️ **Dashboard administrativo**:  
+  - Gerenciamento de posts.  
+  - Gerenciamento de categorias.  
+  - Gerenciamento de tags.  
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tecnologias Utilizadas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- [Laravel 11.x](https://laravel.com/) – framework backend.  
+- [Bootstrap 5](https://getbootstrap.com/) – estilização responsiva.  
+- [MySQL/MariaDB](https://www.mysql.com/) – banco de dados relacional.  
+- [Blade Templates](https://laravel.com/docs/blade) – sistema de views do Laravel.  
+- [Composer](https://getcomposer.org/) – gerenciamento de dependências PHP.  
+- [NPM](https://www.npmjs.com/) – gerenciamento de pacotes frontend.  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📂 Estrutura do Projeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
 
-### Premium Partners
+book-of-shadows/
+├── app/                # Lógica da aplicação
+├── bootstrap/          # Arquivos do bootstrap do Laravel
+├── config/             # Configurações do sistema
+├── database/           # Migrations, seeders e factories
+├── public/             # Arquivos públicos (CSS, JS, imagens)
+├── resources/
+│   ├── views/          # Views Blade (frontend e dashboard)
+│   └── sass/           # Arquivos de estilo
+├── routes/             # Rotas (web.php, api.php)
+├── tests/              # Testes automatizados
+└── ...
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+````
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ⚙️ Instalação e Configuração
 
-## Code of Conduct
+1. **Clonar o repositório:**
+   ```bash
+   git clone https://Grazziano@bitbucket.org/grazziano/book-of-shadows.git
+   cd book-of-shadows
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. **Instalar dependências do PHP com Composer:**
 
-## Security Vulnerabilities
+   ```bash
+   composer install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Instalar dependências do frontend:**
 
-## License
+   ```bash
+   npm install && npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Configurar o arquivo `.env`:**
+
+   * Copiar o arquivo `.env.example` para `.env`
+   * Configurar banco de dados e demais variáveis de ambiente
+
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Rodar migrations e seeders:**
+
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. **Subir o servidor local:**
+
+   ```bash
+   php artisan serve
+   ```
+
+---
+
+## 📊 Dashboard
+
+O projeto inclui um **painel administrativo** acessível apenas para usuários autenticados, permitindo:
+
+* Criar, editar e excluir **posts**.
+* Organizar **categorias** e **tags**.
+* Moderação de **histórias enviadas por usuários**.
+
+---
+
+## 🔮 Roadmap (Próximas Melhorias)
+
+* ✅ Autenticação de usuários (login, registro, recuperação de senha).
+* ✅ Upload de imagens para histórias e posts.
+* ⬜ Sistema de comentários.
+* ⬜ Área de perfil do usuário.
+* ⬜ SEO otimizado para histórias e lendas.
+* ⬜ Integração com redes sociais para compartilhamento de histórias.
+
+---
+
+## 🎃 Créditos
+
+Desenvolvido por [Grazziano](https://github.com/grazziano) 👨‍💻
+
+Inspirado no espírito do **Halloween**, para reunir contos, lendas e relatos que gelam a espinha!
