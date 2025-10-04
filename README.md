@@ -22,7 +22,8 @@ Além disso, o projeto possui um **Boletim Macabro** com relatos enviados pela c
 
 - [Laravel 11.x](https://laravel.com/) – framework backend.  
 - [Bootstrap 5](https://getbootstrap.com/) – estilização responsiva.  
-- [MySQL/MariaDB](https://www.mysql.com/) – banco de dados relacional.  
+- [MySQL/MariaDB](https://www.mysql.com/) – banco de dados relacional.
+- [Docker & Docker Compose](https://www.docker.com/)    
 - [Blade Templates](https://laravel.com/docs/blade) – sistema de views do Laravel.  
 - [Composer](https://getcomposer.org/) – gerenciamento de dependências PHP.  
 - [NPM](https://www.npmjs.com/) – gerenciamento de pacotes frontend.  
@@ -46,7 +47,7 @@ book-of-shadows/
 ├── tests/              # Testes automatizados
 └── ...
 
-````
+```
 
 ---
 
@@ -94,7 +95,126 @@ book-of-shadows/
 
 ---
 
-## 📊 Dashboard
+## 🐳 Execução com Docker
+
+Se preferir rodar a aplicação em containers:
+
+### 1. Subir os containers
+
+```bash
+docker-compose up -d --build
+```
+
+### 2. Acessar o container do Laravel
+
+```bash
+docker exec -it book-of-shadows-app bash
+```
+
+### 3. Dentro do container, rodar comandos iniciais:
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm install && npm run build
+```
+
+### 4. Acessar o site:
+
+👉 [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 🐋 Estrutura do Docker
+
+### `Dockerfile`
+
+```dockerfile
+FROM php:8.3-fpm
+
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    git zip unzip curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev libzip-dev npm
+
+# Extensões PHP
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# Composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
+# Definir diretório de trabalho
+WORKDIR /var/www
+
+COPY . .
+
+RUN composer install && npm install && npm run build
+
+EXPOSE 9000
+CMD ["php-fpm"]
+```
+
+### `docker-compose.yml`
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: book-of-shadows-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - book-network
+    ports:
+      - "8000:9000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: book-of-shadows-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: book_of_shadows
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - book-network
+
+networks:
+  book-network:
+
+volumes:
+  db_data:
+```
+
+---
+
+## 🧙 Dashboard Administrativo
+
+Acesse o painel de controle em `/admin` após autenticação.
+Permite gerenciar:
+
+* 🕮 **Posts** (criar, editar, excluir)
+* 🕸️ **Categorias e Tags**
+* 💀 **Histórias de usuários**
+* 🩸 **Relatos do Boletim Macabro**
+
+---
+
+<!-- ## 📊 Dashboard
 
 O projeto inclui um **painel administrativo** acessível apenas para usuários autenticados, permitindo:
 
@@ -102,7 +222,7 @@ O projeto inclui um **painel administrativo** acessível apenas para usuários a
 * Organizar **categorias** e **tags**.
 * Moderação de **histórias enviadas por usuários**.
 
----
+--- -->
 
 ## 🔮 Roadmap (Próximas Melhorias)
 
