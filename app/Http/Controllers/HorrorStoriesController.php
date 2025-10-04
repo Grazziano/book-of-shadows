@@ -9,9 +9,16 @@ class HorrorStoriesController extends Controller
 {
     public function index()
     {
-        // Buscar posts publicados do banco de dados
+        // Buscar posts publicados do banco de dados filtrados por categorias de terror
         $stories = Post::with(['category', 'tags', 'user'])
             ->published()
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'like', '%terror%')
+                      ->orWhere('name', 'like', '%horror%')
+                      ->orWhere('name', 'like', '%medo%')
+                      ->orWhere('name', 'like', '%assombr%')
+                      ->orWhere('name', 'like', '%conto%');
+            })
             ->orderBy('published_at', 'desc')
             ->get()
             ->map(function ($post) {

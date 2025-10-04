@@ -9,9 +9,16 @@ class UrbanLegendsController extends Controller
 {
     public function index()
     {
-        // Buscar posts publicados do banco de dados
+        // Buscar posts publicados do banco de dados filtrados por categorias de lendas urbanas
         $posts = Post::with(['category', 'tags', 'user'])
             ->published()
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'like', '%lenda%')
+                      ->orWhere('name', 'like', '%urbana%')
+                      ->orWhere('name', 'like', '%mito%')
+                      ->orWhere('name', 'like', '%folclore%')
+                      ->orWhere('name', 'like', '%mistério%');
+            })
             ->orderBy('published_at', 'desc')
             ->get();
 
