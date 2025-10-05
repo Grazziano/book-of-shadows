@@ -14,7 +14,9 @@
                 <!-- <li><a href="/">Início</a></li> -->
                 <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
                 <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
+                @if(auth()->check())
                 <li><a href="{{ route('create-legend') }}">Crie sua Lenda</a></li>
+                @endif
                 <li><a href="{{ route('macabre-newsletter') }}">Boletim Macabro</a></li>
                 @if(auth()->check())
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
