@@ -3,190 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Story;
 
 class HorrorStoriesController extends Controller
 {
     public function index()
     {
-        // Buscar posts publicados do banco de dados filtrados por categorias de terror
-        $stories = Post::with(['category', 'tags', 'user'])
+        // Buscar contos de terror publicados da tabela stories
+        $stories = Story::with('user')
             ->published()
-            ->whereHas('category', function ($query) {
-                $query->where('name', 'like', '%terror%')
-                      ->orWhere('name', 'like', '%horror%')
-                      ->orWhere('name', 'like', '%medo%')
-                      ->orWhere('name', 'like', '%assombr%')
-                      ->orWhere('name', 'like', '%conto%');
-            })
             ->orderBy('published_at', 'desc')
             ->get()
-            ->map(function ($post) {
+            ->map(function ($story) {
                 return [
-                    'id' => $post->id,
-                    'title' => $post->title,
-                    'author' => $post->user->name ?? 'Autor Desconhecido',
-                    'summary' => $post->excerpt,
-                    'content_preview' => substr(strip_tags($post->content), 0, 150) . '...',
-                    'full_content' => $post->content,
-                    'category' => $post->category->name ?? 'Sem Categoria',
-                    'reading_time' => $this->calculateReadingTime($post->content),
-                    'horror_level' => $this->getRandomHorrorLevel(),
-                    'published_date' => $post->published_at->format('Y-m-d'),
-                    'tags' => $post->tags->pluck('name')->toArray()
+                    'id' => $story->id,
+                    'title' => $story->title,
+                    'author' => $story->author ?? $story->user->name ?? 'Autor Desconhecido',
+                    'summary' => $story->excerpt,
+                    'content_preview' => substr(strip_tags($story->content), 0, 150) . '...',
+                    'full_content' => $story->content,
+                    'category' => $story->category,
+                    'reading_time' => $story->reading_time,
+                    'horror_level' => $story->horror_level,
+                    'published_date' => $story->published_at->format('Y-m-d'),
+                    'featured_image' => $story->featured_image,
+                    'tags' => [] // Adicionando tags vazio por enquanto
                 ];
             });
 
-        // Se não houver posts no banco, usar dados fictícios como fallback
+        // Se não houver contos no banco, usar dados fictícios como fallback
         if ($stories->isEmpty()) {
-            $stories = collect([
-                [
-                    'id' => 1,
-                    'title' => 'A Casa no Final da Rua',
-                    'author' => 'Edgar Allan Poe',
-                    'summary' => 'Uma família se muda para uma casa aparentemente perfeita, mas logo descobrem que os antigos moradores nunca realmente partiram.',
-                    'content_preview' => 'Era uma noite tempestuosa quando chegamos à casa. As janelas pareciam nos observar como olhos vazios...',
-                    'full_content' => 'Era uma noite tempestuosa quando chegamos à casa. As janelas pareciam nos observar como olhos vazios, e o vento uivava através das frestas como lamentos de almas perdidas.\n\nA mudança havia sido necessária - meu trabalho exigia que nos relocássemos para aquela pequena cidade do interior. A casa estava disponível por um preço surpreendentemente baixo, o que deveria ter sido nosso primeiro sinal de alerta.\n\nNos primeiros dias, tudo parecia normal. As crianças brincavam no quintal, minha esposa organizava os móveis, e eu me concentrava em estabelecer meu novo escritório. Mas então começaram os ruídos.\n\nPrimeiro foram passos no andar de cima, quando todos estávamos na sala. Depois, portas que se fechavam sozinhas. Vozes sussurrando no meio da noite. Minha esposa insistia que eram apenas os sons de uma casa velha se acomodando, mas eu sabia que havia algo mais.\n\nFoi quando encontrei o diário escondido no sótão que tudo fez sentido. A família anterior - os Blackwood - havia desaparecido uma noite, deixando tudo para trás. O último registro no diário era aterrorizante: "Eles não nos deixam partir. Estão sempre observando, sempre esperando. Se alguém encontrar isto, fujam enquanto podem."\n\nMas já era tarde demais. Naquela noite, quando tentamos sair, as portas não abriram. As janelas estavam seladas por uma força invisível. E então os vimos - figuras sombrias nos corredores, rostos pálidos nas janelas, mãos espectrais que se estendiam das paredes.\n\nAgora entendo por que a casa estava tão barata. Não éramos os novos proprietários - éramos os próximos prisioneiros. E assim como os Blackwood, descobrimos que alguns lugares nunca deixam seus habitantes partirem.',
-                    'category' => 'Fantasmas',
-                    'reading_time' => '15 min',
-                    'horror_level' => 'Alto',
-                    'published_date' => '2024-10-15',
-                    'tags' => ['Casa Assombrada', 'Família', 'Mistério']
-                ],
-                [
-                    'id' => 2,
-                    'title' => 'O Espelho do Sótão',
-                    'author' => 'H.P. Lovecraft',
-                    'summary' => 'Um antigo espelho encontrado no sótão revela reflexos que não deveriam existir, mostrando horrores de outras dimensões.',
-                    'content_preview' => 'O espelho estava coberto por décadas de poeira, mas quando o limpei, vi algo que não era meu reflexo...',
-                    'full_content' => 'O espelho estava coberto por décadas de poeira, mas quando o limpei, vi algo que não era meu reflexo. Era uma face distorcida, com olhos que brilhavam com uma luz sobrenatural e um sorriso que revelava dentes afiados como navalhas.\n\nHerdei a casa da minha tia-avó, uma mulher excêntrica que sempre falava sobre "portais" e "outras dimensões". Pensei que fossem apenas delírios de uma mente senil, mas agora entendo que ela sabia exatamente do que estava falando.\n\nO espelho estava no sótão, coberto por um pano preto e cercado por velas derretidas e símbolos estranhos desenhados no chão. Deveria ter deixado como estava, mas a curiosidade foi mais forte.\n\nNa primeira noite após limpá-lo, acordei com a sensação de estar sendo observado. O espelho refletia meu quarto perfeitamente, exceto por uma diferença perturbadora - havia figuras sombrias em pé ao redor da minha cama, figuras que não existiam na realidade.\n\nA cada dia que passava, o reflexo se tornava mais distorcido. Minha imagem começou a se mover independentemente, fazendo gestos que eu não fazia, sorrindo quando eu estava sério. E então, uma noite, meu reflexo falou.\n\n"Você abriu a porta", disse com minha própria voz, mas com uma entonação que me gelou o sangue. "Agora eles podem passar."\n\nFoi quando percebi que o espelho não mostrava reflexos - mostrava outro mundo, um lugar onde criaturas antigas esperavam pacientemente por uma oportunidade de cruzar para nossa realidade. E eu, ingenuamente, havia lhes dado essa oportunidade.\n\nAgora eles estão aqui, caminhando pela minha casa, sussurrando em línguas mortas, esperando o momento certo para se revelarem ao mundo. E o pior de tudo é que meu reflexo continua lá, preso do outro lado, gritando silenciosamente por ajuda enquanto algo terrível usa meu corpo neste mundo.',
-                    'category' => 'Sobrenatural',
-                    'reading_time' => '12 min',
-                    'horror_level' => 'Extremo',
-                    'published_date' => '2024-10-10',
-                    'tags' => ['Espelho', 'Dimensões', 'Terror Psicológico']
-                ],
-                [
-                    'id' => 3,
-                    'title' => 'A Boneca de Porcelana',
-                    'author' => 'Mary Shelley',
-                    'summary' => 'Uma boneca de porcelana herdada da avó começa a se mover durante a noite, sussurrando segredos sombrios do passado.',
-                    'content_preview' => 'Todas as manhãs, a boneca estava em um lugar diferente. Seus olhos de vidro pareciam me seguir...',
-                    'full_content' => 'Todas as manhãs, a boneca estava em um lugar diferente. Seus olhos de vidro pareciam me seguir, e seu sorriso pintado havia se tornado mais sinistro a cada dia que passava.\n\nA boneca havia pertencido à minha avó, que morreu quando eu tinha apenas cinco anos. Minha mãe sempre disse que a vovó tinha uma ligação especial com aquela boneca, conversando com ela como se fosse uma pessoa real. Pensávamos que era apenas a solidão da velhice.\n\nQuando herdei a casa da família, encontrei a boneca no quarto da vovó, sentada em uma cadeira de balanço, vestida com um vestido vitoriano impecável. Seus cabelos loiros estavam perfeitamente penteados, e seus olhos azuis de vidro brilhavam com uma intensidade perturbadora.\n\nDecidi mantê-la como lembrança, colocando-a na estante da sala. Mas na manhã seguinte, ela estava na mesa da cozinha. Pensei que talvez eu a tivesse movido sem perceber, mas quando isso aconteceu novamente, e depois novamente, comecei a ficar preocupado.\n\nFoi na terceira noite que a ouvi sussurrar. Palavras em uma língua que não reconheci, mas que de alguma forma entendi. Ela estava contando segredos - segredos sobre a família, sobre mortes que foram encobertas, sobre rituais sombrios realizados no porão da casa.\n\n"Sua avó me contou tudo", sussurrou com uma voz infantil que ecoava na escuridão. "Sobre o que ela fez para me dar vida, sobre as almas que ela aprisionou dentro de mim."\n\nFoi então que entendi por que minha avó nunca se separava da boneca. Não era apenas uma companheira - era um receptáculo para algo muito mais sinistro. E agora, com minha avó morta, a boneca estava procurando uma nova anfitriã.\n\nTentei queimá-la, mas as chamas se recusaram a tocá-la. Tentei enterrá-la, mas ela sempre voltava. E a cada noite, sua voz fica mais forte, mais persuasiva, sussurrando promessas de poder e conhecimento em troca de uma simples coisa - minha alma.\n\nAgora entendo que não sou o dono da boneca. Ela é que me possui.',
-                    'category' => 'Objetos Amaldiçoados',
-                    'reading_time' => '18 min',
-                    'horror_level' => 'Médio',
-                    'published_date' => '2024-10-05',
-                    'tags' => ['Boneca', 'Herança', 'Maldição']
-                ],
-                [
-                    'id' => 4,
-                    'title' => 'O Sussurro na Floresta',
-                    'author' => 'Bram Stoker',
-                    'summary' => 'Caminhantes noturnos relatam ouvir sussurros vindos das árvores, chamando-os para se perderem para sempre na escuridão.',
-                    'content_preview' => 'Os galhos se moviam sem vento, e entre as folhas, vozes antigas chamavam meu nome...',
-                    'category' => 'Natureza Sombria',
-                    'reading_time' => '20 min',
-                    'horror_level' => 'Alto',
-                    'published_date' => '2024-09-28',
-                    'tags' => ['Floresta', 'Sussurros', 'Perdição']
-                ],
-                [
-                    'id' => 5,
-                    'title' => 'A Última Ligação',
-                    'author' => 'Stephen King',
-                    'summary' => 'Um telefone antigo toca todas as noites às 3:33, e quem atende recebe uma mensagem aterrorizante do além.',
-                    'content_preview' => 'O telefone tocou novamente. Minha mão tremeu ao atender, e a voz do outro lado era familiar demais...',
-                    'category' => 'Terror Moderno',
-                    'reading_time' => '10 min',
-                    'horror_level' => 'Médio',
-                    'published_date' => '2024-09-20',
-                    'tags' => ['Telefone', 'Hora Morta', 'Comunicação']
-                ],
-                [
-                    'id' => 6,
-                    'title' => 'O Diário Perdido',
-                    'author' => 'Shirley Jackson',
-                    'summary' => 'Um diário encontrado em uma casa abandonada revela os últimos dias de uma família que desapareceu misteriosamente.',
-                    'content_preview' => 'Dia 30: As paredes estão sussurrando novamente. Não consigo mais distinguir o que é real...',
-                    'category' => 'Mistério',
-                    'reading_time' => '25 min',
-                    'horror_level' => 'Alto',
-                    'published_date' => '2024-09-15',
-                    'tags' => ['Diário', 'Desaparecimento', 'Casa Abandonada']
-                ],
-                [
-                    'id' => 7,
-                    'title' => 'A Sombra que Segue',
-                    'author' => 'Clive Barker',
-                    'summary' => 'Uma sombra sem dono começa a seguir uma jovem, crescendo mais escura e ameaçadora a cada dia que passa.',
-                    'content_preview' => 'Ela estava sempre atrás de mim, mesmo quando não havia luz para criar sombras...',
-                    'category' => 'Terror Psicológico',
-                    'reading_time' => '14 min',
-                    'horror_level' => 'Extremo',
-                    'published_date' => '2024-09-08',
-                    'tags' => ['Sombra', 'Perseguição', 'Paranoia']
-                ],
-                [
-                    'id' => 8,
-                    'title' => 'O Colecionador de Almas',
-                    'author' => 'Anne Rice',
-                    'summary' => 'Um antiquário descobre que os objetos em sua loja carregam as almas de seus antigos donos, todas clamando por liberdade.',
-                    'content_preview' => 'Cada objeto sussurrava uma história diferente, mas todas terminavam em desespero...',
-                    'category' => 'Sobrenatural',
-                    'reading_time' => '22 min',
-                    'horror_level' => 'Alto',
-                    'published_date' => '2024-09-01',
-                    'tags' => ['Almas', 'Antiguidades', 'Coleção']
-                ]
-            ]);
-
-            return view('horror-stories.index', compact('stories'));
+            $stories = $this->getFictionalStories();
         }
+
         return view('horror-stories.index', compact('stories'));
     }
 
     public function show($id)
     {
-        // Buscar post específico do banco de dados
-        $post = Post::with(['category', 'tags', 'user'])
+        // Buscar conto específico da tabela stories
+        $story = Story::with('user')
             ->published()
             ->findOrFail($id);
 
-        $story = [
-            'id' => $post->id,
-            'title' => $post->title,
-            'author' => $post->user->name ?? 'Autor Desconhecido',
-            'summary' => $post->excerpt,
-            'content_preview' => substr(strip_tags($post->content), 0, 150) . '...',
-            'full_content' => $post->content,
-            'category' => $post->category->name ?? 'Sem Categoria',
-            'reading_time' => $this->calculateReadingTime($post->content),
-            'horror_level' => $this->getRandomHorrorLevel(),
-            'published_date' => $post->published_at->format('Y-m-d'),
-            'tags' => $post->tags->pluck('name')->toArray()
+        $storyData = [
+            'id' => $story->id,
+            'title' => $story->title,
+            'author' => $story->author ?? $story->user->name ?? 'Autor Desconhecido',
+            'summary' => $story->excerpt,
+            'content_preview' => substr(strip_tags($story->content), 0, 150) . '...',
+            'full_content' => $story->content,
+            'category' => $story->category,
+            'reading_time' => $story->reading_time,
+            'horror_level' => $story->horror_level,
+            'published_date' => $story->published_at->format('Y-m-d'),
+            'featured_image' => $story->featured_image,
+            'tags' => [] // Adicionando tags vazio por enquanto
         ];
 
-        return view('horror-stories.show', compact('story'));
-    }
-
-    /**
-     * Calcula o tempo de leitura baseado no conteúdo
-     */
-    private function calculateReadingTime($content)
-    {
-        $wordCount = str_word_count(strip_tags($content));
-        $minutes = ceil($wordCount / 200); // Assumindo 200 palavras por minuto
-        return $minutes . ' min';
-    }
-
-    /**
-     * Retorna um nível de horror aleatório
-     */
-    private function getRandomHorrorLevel()
-    {
-        $levels = ['Baixo', 'Médio', 'Alto', 'Extremo'];
-        return $levels[array_rand($levels)];
+        return view('horror-stories.show', ['story' => $storyData]);
     }
 
     // Fallback para dados fictícios (removido para usar apenas dados do banco)

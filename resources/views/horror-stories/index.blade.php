@@ -424,9 +424,11 @@
                         </div>
 
                         <div class="story-tags">
-                            @foreach($story['tags'] as $tag)
-                                <span class="tag">{{ $tag }}</span>
-                            @endforeach
+                            @if(!empty($story['tags']))
+                                @foreach($story['tags'] as $tag)
+                                    <span class="tag">{{ $tag }}</span>
+                                @endforeach
+                            @endif
                         </div>
 
                         <a href="{{ route('horror-stories.show', $story['id']) }}" class="read-more-btn">Ler Conto Completo</a>

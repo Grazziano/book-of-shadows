@@ -3,53 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Legend;
 
 class UrbanLegendsController extends Controller
 {
     public function index()
     {
-        // Buscar posts publicados do banco de dados filtrados por categorias de lendas urbanas
-        $posts = Post::with(['category', 'tags', 'user'])
-            ->published()
-            ->whereHas('category', function ($query) {
-                $query->where('name', 'like', '%lenda%')
-                      ->orWhere('name', 'like', '%urbana%')
-                      ->orWhere('name', 'like', '%mito%')
-                      ->orWhere('name', 'like', '%folclore%')
-                      ->orWhere('name', 'like', '%mistério%');
-            })
-            ->orderBy('published_at', 'desc')
-            ->get();
+        // Buscar lendas urbanas publicadas da tabela legends
+        $legendsData = Legend::orderBy('created_at', 'desc')->get();
 
-        // Mapear posts para o formato esperado pela view
-        $legends = $posts->map(function ($post) {
+        // Mapear lendas para o formato esperado pela view
+        $legends = $legendsData->map(function ($legend) {
             return [
-                'id' => $post->id,
-                'title' => $post->title,
-                'summary' => $post->excerpt,
-                'image' => $post->featured_image ?? '/images/default-legend.jpg',
-                'category' => $post->category->name ?? 'Sem Categoria',
-                'origin' => 'Brasil', // Valor padrão
-                'danger_level' => $this->getRandomDangerLevel()
+                'id' => $legend->id,
+                'title' => $legend->title,
+                'summary' => $legend->content ? substr(strip_tags($legend->content), 0, 150) . '...' : 'Sem resumo disponível',
+                'image' => '/images/default-legend.jpg', // Imagem padrão
+                'category' => $legend->category,
+                'origin' => $legend->location ?? 'Brasil',
+                'danger_level' => $legend->danger_level
             ];
         })->toArray();
 
-        // Fallback para dados fictícios se não houver posts
+        // Fallback para dados fictícios se não houver lendas
         if (empty($legends)) {
             $legends = $this->getFictionalLegends();
         }
 
         return view('urban-legends.index', compact('legends'));
-    }
-
-    /**
-     * Retorna um nível de perigo aleatório
-     */
-    private function getRandomDangerLevel()
-    {
-        $levels = ['Baixo', 'Médio', 'Alto', 'Extremo'];
-        return $levels[array_rand($levels)];
     }
 
     /**
@@ -117,22 +98,22 @@ class UrbanLegendsController extends Controller
 
     public function show($id)
     {
-        // Buscar post específico do banco de dados
-        $post = Post::with(['category', 'tags', 'user'])
+        // Buscar lenda específica do banco de dados
+        $legends = Legend::with(['category', 'tags', 'user'])
             ->published()
             ->findOrFail($id);
 
         $legend = [
-            'id' => $post->id,
-            'title' => $post->title,
-            'summary' => $post->excerpt,
-            'full_content' => $post->content,
-            'image' => $post->featured_image ?? '/images/default-legend.jpg',
-            'category' => $post->category->name ?? 'Sem Categoria',
+            'id' => $legends->id,
+            'title' => $legends->title,
+            'summary' => $legends->excerpt,
+            'full_content' => $legends->content,
+            'image' => $legends->featured_image ?? '/images/default-legend.jpg',
+            'category' => $legends->category->name ?? 'Sem Categoria',
             'origin' => 'Brasil', // Valor padrão
-            'danger_level' => $this->getRandomDangerLevel(),
-            'published_date' => $post->published_at->format('Y-m-d'),
-            'tags' => $post->tags->pluck('name')->toArray()
+            'danger_level' => $legends->danger_level ?? 'Baixo',
+            'published_date' => $legends->published_at->format('Y-m-d'),
+            'tags' => $legends->tags->pluck('name')->toArray()
         ];
 
         return view('urban-legends.show', compact('legend'));
