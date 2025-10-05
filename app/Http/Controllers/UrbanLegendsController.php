@@ -106,13 +106,13 @@ class UrbanLegendsController extends Controller
         $legend = [
             'id' => $legends->id,
             'title' => $legends->title,
-            'summary' => $legends->excerpt,
+            'summary' => $legends->excerpt ?? $legends->content,
             'full_content' => $legends->content,
             'image' => $legends->featured_image ?? '/images/default-legend.jpg',
             'category' => $legends->category->name ?? 'Sem Categoria',
-            'origin' => 'Brasil', // Valor padrão
+            'origin' => $legends->location ?? 'Brasil',
             'danger_level' => $legends->danger_level ?? 'Baixo',
-            'published_date' => $legends->published_at->format('Y-m-d'),
+            'published_date' => $legends->published_at ? $legends->published_at->format('Y-m-d') : $legends->created_at->format('Y-m-d'),
             'tags' => $legends->tags->pluck('name')->toArray()
         ];
 
