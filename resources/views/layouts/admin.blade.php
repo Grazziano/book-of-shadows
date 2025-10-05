@@ -109,7 +109,7 @@
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
-        <div class="sidebar col-md-3 col-lg-2 d-md-block collapse">
+        <div class="sidebar col-md-3 col-lg-2 collapse d-md-block" id="sidebarMenu">
             <div class="sidebar-brand">
                 <i class="fas fa-book-dead me-2"></i>
                 Boletim Macabro
@@ -154,9 +154,16 @@
         <div id="content-wrapper" class="d-flex flex-column col-md-9 col-lg-10 ms-auto">
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button class="btn btn-link d-md-none rounded-circle mr-3">
+                <button class="btn btn-link d-md-none rounded-circle me-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Alternar navegação">
                     <i class="fa fa-bars"></i>
                 </button>
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
