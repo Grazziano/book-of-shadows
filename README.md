@@ -224,6 +224,21 @@ O projeto inclui um **painel administrativo** acessível apenas para usuários a
 
 --- -->
 
+## 📸 Imagens do Site
+
+> Algumas capturas de tela das páginas principais do projeto.
+
+|          Página Inicial         |            Boletim Macabro            |                 Dashboard                 |
+| :-----------------------------: | :-----------------------------------: | :---------------------------------------: |
+| ![Home](./public/screenshots/home.png) | ![Boletim](./public/screenshots/boletim.png) | ![Dashboard](./public/screenshots/dashboard.png) |
+
+<!-- > As imagens devem ser colocadas na pasta:
+> `public/screenshots/` -->
+
+Você pode ajustar os nomes ou caminhos conforme a estrutura do seu projeto.
+
+---
+
 ## 🔮 Roadmap (Próximas Melhorias)
 
 * ✅ Autenticação de usuários (login, registro, recuperação de senha).
