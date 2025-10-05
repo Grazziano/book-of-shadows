@@ -25,7 +25,7 @@
             @if(auth()->check())
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="btn btn-logout">Sair</button>
+                <button type="submit" class="btn btn-logout" onclick="return confirm('Tem certeza que deseja sair?');">Sair</button>
             </form>
             @else
             <a href="{{ route('login') }}" class="btn btn-login">Login</a>
