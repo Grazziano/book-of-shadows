@@ -5,6 +5,7 @@ use App\Http\Controllers\UrbanLegendsController;
 use App\Http\Controllers\HorrorStoriesController;
 use App\Http\Controllers\CreateLegendController;
 use App\Http\Controllers\MacabreNewsletterController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,9 +13,12 @@ Route::get('/', function () {
 });
 
 Route::get('/lendas-urbanas', [UrbanLegendsController::class, 'index'])->name('urban-legends');
+Route::get('/lendas-urbanas/{id}', [UrbanLegendsController::class, 'show'])->name('urban-legends.show');
 
 Route::get('/contos-de-terror', [HorrorStoriesController::class, 'index'])->name('horror-stories');
 Route::get('/contos-de-terror/{id}', [HorrorStoriesController::class, 'show'])->name('horror-stories.show');
+
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/crie-sua-lenda', [CreateLegendController::class, 'create'])->name('create-legend');
 Route::post('/crie-sua-lenda', [CreateLegendController::class, 'store'])->name('store-legend');
