@@ -203,6 +203,26 @@
             border-color: var(--secondary-color);
         }
 
+        .featured-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .featured-link:hover .featured-title {
+            color: #ff6b6b;
+        }
+
+        .article-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-link:hover .article-title {
+            color: #ff6b6b;
+        }
+
         .urgency-badge {
             position: absolute;
             top: 1rem;
@@ -353,15 +373,21 @@
 
         <article class="featured-article">
             <div class="featured-badge">Destaque</div>
-            <h2 class="featured-title">{{ $newsletter['featured_article']['title'] }}</h2>
-            <div class="featured-meta">
-                <span>📅 {{ $newsletter['featured_article']['date'] }}</span>
-                <span>🏷️ {{ $newsletter['featured_article']['category'] }}</span>
-                @if(isset($newsletter['featured_article']['author']))
-                    <span>✍️ {{ $newsletter['featured_article']['author'] }}</span>
-                @endif
-            </div>
-            <p class="featured-summary">{{ $newsletter['featured_article']['summary'] }}</p>
+            @if(isset($newsletter['featured_article']['url']))
+                <a href="{{ $newsletter['featured_article']['url'] }}" class="featured-link">
+            @endif
+                <h2 class="featured-title">{{ $newsletter['featured_article']['title'] }}</h2>
+                <div class="featured-meta">
+                    <span>📅 {{ $newsletter['featured_article']['date'] }}</span>
+                    <span>🏷️ {{ $newsletter['featured_article']['category'] }}</span>
+                    @if(isset($newsletter['featured_article']['author']))
+                        <span>✍️ {{ $newsletter['featured_article']['author'] }}</span>
+                    @endif
+                </div>
+                <p class="featured-summary">{{ $newsletter['featured_article']['summary'] }}</p>
+            @if(isset($newsletter['featured_article']['url']))
+                </a>
+            @endif
         </article>
 
         <section class="articles-grid">
@@ -370,15 +396,21 @@
                     <div class="urgency-badge urgency-{{ $article['urgency'] }}">
                         {{ ucfirst($article['urgency']) }}
                     </div>
-                    <h3 class="article-title">{{ $article['title'] }}</h3>
-                    <div class="article-meta">
-                        <span class="article-date">📅 {{ $article['date'] }}</span>
-                        <span class="article-category">🏷️ {{ $article['category'] }}</span>
-                        @if(isset($article['author']))
-                            <span class="article-author">✍️ {{ $article['author'] }}</span>
-                        @endif
-                    </div>
-                    <p class="article-summary">{{ $article['summary'] }}</p>
+                    @if(isset($article['url']))
+                        <a href="{{ $article['url'] }}" class="article-link">
+                    @endif
+                        <h3 class="article-title">{{ $article['title'] }}</h3>
+                        <div class="article-meta">
+                            <span class="article-date">📅 {{ $article['date'] }}</span>
+                            <span class="article-category">🏷️ {{ $article['category'] }}</span>
+                            @if(isset($article['author']))
+                                <span class="article-author">✍️ {{ $article['author'] }}</span>
+                            @endif
+                        </div>
+                        <p class="article-summary">{{ $article['summary'] }}</p>
+                    @if(isset($article['url']))
+                        </a>
+                    @endif
                 </article>
             @endforeach
         </section>

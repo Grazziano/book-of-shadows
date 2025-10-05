@@ -46,7 +46,8 @@ class MacabreNewsletterController extends Controller
                 'author' => $post->user->name ?? 'Autor Desconhecido',
                 'type' => 'post',
                 'urgency' => $this->determineUrgency($post->category->name ?? 'Geral'),
-                'published_at' => $post->published_at
+                'published_at' => $post->published_at,
+                'url' => route('posts.show', $post->id)
             ]);
         }
 
@@ -61,7 +62,8 @@ class MacabreNewsletterController extends Controller
                 'author' => $story->author ?? $story->user->name ?? 'Autor Desconhecido',
                 'type' => 'story',
                 'urgency' => $this->determineUrgency($story->category),
-                'published_at' => $story->published_at
+                'published_at' => $story->published_at,
+                'url' => route('horror-stories.show', $story->id)
             ]);
         }
 
@@ -76,7 +78,8 @@ class MacabreNewsletterController extends Controller
                 'author' => $legend->author ?? 'Autor Desconhecido',
                 'type' => 'legend',
                 'urgency' => $this->determineUrgency($legend->category),
-                'published_at' => $legend->created_at
+                'published_at' => $legend->created_at,
+                'url' => route('urban-legends.show', $legend->id)
             ]);
         }
 

@@ -79,16 +79,22 @@
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
             border: 2px solid transparent;
             position: relative;
         }
 
-        .legend-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(139,0,0,0.3);
+        .legend-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .legend-link:hover .legend-card {
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--primary-color);
+            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.3);
         }
 
         .legend-image {
@@ -245,25 +251,27 @@
 
         <div class="legends-grid">
             @foreach($legends as $index => $legend)
-                <div class="legend-card loading-animation" style="animation-delay: {{ $index * 0.1 }}s">
-                    <div class="danger-level danger-{{ strtolower($legend['danger_level']) }}">
-                        {{ $legend['danger_level'] }}
-                    </div>
+                <a href="{{ route('urban-legends.show', $legend['id']) }}" class="legend-link">
+                    <div class="legend-card loading-animation" style="animation-delay: {{ $index * 0.1 }}s">
+                        <div class="danger-level danger-{{ strtolower($legend['danger_level']) }}">
+                            {{ $legend['danger_level'] }}
+                        </div>
 
-                    <div class="legend-image">
-                        👻
-                    </div>
+                        <div class="legend-image">
+                            👻
+                        </div>
 
-                    <div class="legend-content">
-                        <h3 class="legend-title">{{ $legend['title'] }}</h3>
-                        <p class="legend-summary">{{ $legend['summary'] }}</p>
+                        <div class="legend-content">
+                            <h3 class="legend-title">{{ $legend['title'] }}</h3>
+                            <p class="legend-summary">{{ $legend['summary'] }}</p>
 
-                        <div class="legend-meta">
-                            <span class="meta-tag">📍 {{ $legend['origin'] }}</span>
-                            <span class="meta-tag">🏷️ {{ $legend['category'] }}</span>
+                            <div class="legend-meta">
+                                <span class="meta-tag">📍 {{ $legend['origin'] }}</span>
+                                <span class="meta-tag">🏷️ {{ $legend['category'] }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
