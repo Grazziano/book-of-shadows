@@ -22,4 +22,12 @@ class Legend extends Model
     protected $casts = [
         'danger_level' => 'integer',
     ];
+
+    /**
+     * Scope para lendas publicadas
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('created_at');
+    }
 }

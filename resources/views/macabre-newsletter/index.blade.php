@@ -257,6 +257,18 @@
             color: var(--secondary-color);
         }
 
+        .article-date {
+            color: var(--accent-color);
+        }
+
+        .article-category {
+            color: var(--accent-color);
+        }
+
+        .article-author {
+            color: var(--accent-color);
+        }
+
         .article-summary {
             font-size: 1rem;
             line-height: 1.6;
@@ -345,6 +357,9 @@
             <div class="featured-meta">
                 <span>📅 {{ $newsletter['featured_article']['date'] }}</span>
                 <span>🏷️ {{ $newsletter['featured_article']['category'] }}</span>
+                @if(isset($newsletter['featured_article']['author']))
+                    <span>✍️ {{ $newsletter['featured_article']['author'] }}</span>
+                @endif
             </div>
             <p class="featured-summary">{{ $newsletter['featured_article']['summary'] }}</p>
         </article>
@@ -357,8 +372,11 @@
                     </div>
                     <h3 class="article-title">{{ $article['title'] }}</h3>
                     <div class="article-meta">
-                        <span>{{ $article['date'] }}</span>
-                        <span>{{ $article['category'] }}</span>
+                        <span class="article-date">📅 {{ $article['date'] }}</span>
+                        <span class="article-category">🏷️ {{ $article['category'] }}</span>
+                        @if(isset($article['author']))
+                            <span class="article-author">✍️ {{ $article['author'] }}</span>
+                        @endif
                     </div>
                     <p class="article-summary">{{ $article['summary'] }}</p>
                 </article>
