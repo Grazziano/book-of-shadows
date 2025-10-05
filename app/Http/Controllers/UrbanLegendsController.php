@@ -100,7 +100,7 @@ class UrbanLegendsController extends Controller
     {
         // Buscar lenda específica do banco de dados
         $legends = Legend::with(['category', 'tags', 'user'])
-            ->published()
+            // ->published()
             ->findOrFail($id);
 
         $legend = [
