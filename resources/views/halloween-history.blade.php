@@ -47,6 +47,7 @@
                 radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
                 linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(139,0,0,0.8) 100%);
             position: relative;
+            margin-bottom: 40px;
         }
 
         .page-header::before {

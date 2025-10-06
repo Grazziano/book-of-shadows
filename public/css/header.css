@@ -43,11 +43,119 @@ header::before {
     z-index: 0;
 }
 
+.header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Animação de flicker para o logo */
+.flicker {
+    animation: flicker 3s ease-in-out infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Menu Hambúrguer */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger-menu span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Navegação Principal */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-color);
+}
+
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Botões de Autenticação */
 .auth-buttons {
     display: flex;
     gap: 10px;
     position: relative;
     z-index: 1;
+    flex-shrink: 0;
 }
 
 .btn-login, .btn-register, .btn-logout {
@@ -62,6 +170,7 @@ header::before {
     font-size: 0.9rem;
     border: 1px solid;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .btn-login {
@@ -88,96 +197,102 @@ header::before {
     filter: brightness(1.2);
 }
 
-.header-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Responsividade */
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-links li a {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+    
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        transition: left 0.3s ease;
+        z-index: 9;
+        padding-top: 80px;
+        box-shadow: 2px 0 10px var(--shadow-color);
+    }
+    
+    .main-nav.active {
+        left: 0;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(169, 169, 169, 0.2);
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links li a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1.1rem;
+        border-bottom: none;
+    }
+    
+    .nav-links li a::after {
+        display: none;
+    }
+    
     .header-content {
-        flex-direction: column;
+        flex-wrap: nowrap;
         gap: 15px;
-    }
-    
-    .auth-buttons {
-        margin-top: 10px;
-    }
-}
-
-.logo {
-    font-family: 'Creepster', cursive;
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    text-shadow: 2px 2px 4px var(--shadow-color);
-    margin: 0;
-    cursor: pointer;
-}
-
-/* Animação de flicker para o logo */
-.flicker {
-    animation: flicker 3s ease-in-out infinite;
-}
-
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-left: 30px;
-}
-
-nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s;
-    position: relative;
-}
-
-nav ul li a:hover {
-    color: var(--accent-color);
-}
-
-nav ul li a::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
-}
-
-/* Responsividade para navegação */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    nav ul li {
-        margin-left: 0;
     }
     
     .logo {
         font-size: 2rem;
-        text-align: center;
+    }
+    
+    .auth-buttons {
+        gap: 8px;
+    }
+    
+    .btn-login, .btn-register, .btn-logout {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .auth-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn-login, .btn-register, .btn-logout {
+        padding: 5px 10px;
+        font-size: 0.75rem;
     }
 }

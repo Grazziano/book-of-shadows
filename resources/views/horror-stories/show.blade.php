@@ -1,9 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $story['title'] }} - Contos de Terror
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $story['title'] }} - Contos de Terror</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    @include('components.header')
+
 <div class="horror-story-show">
     <!-- Header da História -->
     <div class="story-header">
@@ -29,7 +37,6 @@
                 
                 <div class="story-info">
                     <span class="category">{{ $story['category'] }}</span>
-                    <span class="published-date">{{ \Carbon\Carbon::parse($story['published_date'])->format('d/m/Y') }}</span>
                 </div>
             </div>
         </div>
@@ -311,4 +318,5 @@
     animation-delay: 0.2s;
 }
 </style>
-</x-app-layout>
+</body>
+</html>

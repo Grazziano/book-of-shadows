@@ -110,7 +110,7 @@
     <div class="d-flex">
         <!-- Sidebar -->
         <div class="sidebar col-md-3 col-lg-2 collapse d-md-block" id="sidebarMenu">
-            <div class="sidebar-brand">
+            <div class="sidebar-brand" onclick="window.location.href = '/';">
                 <i class="fas fa-book-dead me-2"></i>
                 Boletim Macabro
             </div>

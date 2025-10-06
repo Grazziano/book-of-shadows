@@ -9,9 +9,17 @@
 <header>
     <div class="container header-content">
         <h1 class="logo flicker" onclick="window.location.href = '/';">Book of Shadows</h1>
-        <nav>
-            <ul>
-                <!-- <li><a href="/">Início</a></li> -->
+        
+        <!-- Menu Hambúrguer -->
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navegação Principal -->
+        <nav class="main-nav" id="main-nav">
+            <ul class="nav-links">
                 <li><a href="{{ route('halloween.history') }}">História do Halloween</a></li>
                 <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
                 <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
@@ -25,6 +33,7 @@
                 @endif
             </ul>
         </nav>
+        
         <div class="auth-buttons">
             @if(auth()->check())
             <form method="POST" action="{{ route('logout') }}">
@@ -38,3 +47,32 @@
         </div>
     </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-menu');
+    const nav = document.getElementById('main-nav');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+    
+    // Fechar menu ao clicar em um link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+    
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+        }
+    });
+});
+</script>
