@@ -7,6 +7,7 @@ use App\Http\Controllers\CreateLegendController;
 use App\Http\Controllers\MacabreNewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\HalloweenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,8 @@ Route::get('/crie-sua-lenda', [CreateLegendController::class, 'create'])->name('
 Route::post('/crie-sua-lenda', [CreateLegendController::class, 'store'])->name('store-legend');
 
 Route::get('/boletim-macabro', [MacabreNewsletterController::class, 'index'])->name('macabre-newsletter');
+
+Route::get('/historia-do-halloween', [HalloweenController::class, 'history'])->name('halloween.history');
 
 // Rotas para reviews (dicas e avaliações)
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
