@@ -63,16 +63,29 @@
             <div class="absolute inset-0 bg-black opacity-70"></div>
             
             <div class="relative max-w-4xl mx-auto">
-                <div class="flex items-center mb-6">
-                    <a href="{{ route('reviews.index') }}" 
-                       class="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors mr-4 bg-black bg-opacity-50 px-4 py-2 rounded-lg">
-                        ← Voltar às avaliações
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <a href="{{ route('reviews.index') }}" 
+                           class="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors mr-4 bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+                            ← Voltar às avaliações
+                        </a>
+                        <span class="px-4 py-2 text-sm font-semibold rounded-full 
+                            {{ $review->type === 'movie' ? 'bg-red-600 text-white' : 
+                               ($review->type === 'book' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white') }}">
+                            {{ $review->type_display }}
+                        </span>
+                    </div>
+                    
+                    @if(auth()->check())
+                    <a href="{{ route('reviews.edit', $review) }}" 
+                       class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-semibold">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m18 2 4 4-14 14H4v-4L18 2z"></path>
+                            <path d="m14.5 5.5 4 4"></path>
+                        </svg>
+                        Editar
                     </a>
-                    <span class="px-4 py-2 text-sm font-semibold rounded-full 
-                        {{ $review->type === 'movie' ? 'bg-red-600 text-white' : 
-                           ($review->type === 'book' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white') }}">
-                        {{ $review->type_display }}
-                    </span>
+                    @endif
                 </div>
                 
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-600">

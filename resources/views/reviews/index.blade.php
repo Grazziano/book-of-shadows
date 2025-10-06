@@ -64,14 +64,23 @@
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-600">
                     {{ $type ? ucfirst($type === 'movie' ? 'Filmes' : ($type === 'book' ? 'Livros' : 'Séries')) : 'Dicas e Avaliações' }}
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
                     {{ $type ? 'Descubra as melhores recomendações de ' . ($type === 'movie' ? 'filmes' : ($type === 'book' ? 'livros' : 'séries')) . ' de terror e suspense' : 'Descubra filmes, livros e séries que vão arrepiar sua alma' }}
                 </p>
+                @if(auth()->check())
+                <a href="{{ route('reviews.create') }}" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-purple-700 transition-all duration-300 font-semibold">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Criar Review
+                </a>
+                @endif
             </div>
         </div>
 
         <!-- Filter Tabs -->
-        <div class="max-w-6xl mx-auto px-4 mb-12">
+        <div class="max-w-6xl mx-auto px-4 mb-12 mt-12">
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="{{ route('reviews.index') }}" 
                    class="filter-tab px-6 py-3 rounded-full border-2 transition-all duration-300 {{ !$type ? 'bg-purple-600 border-purple-600 text-white' : 'border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white' }}">
