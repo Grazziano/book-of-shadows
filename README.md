@@ -20,10 +20,10 @@ Além disso, o projeto possui um **Boletim Macabro** com relatos enviados pela c
 
 ## 🛠️ Tecnologias Utilizadas
 
-- [Laravel 11.x](https://laravel.com/) – framework backend.  
+- [Laravel 12.x](https://laravel.com/) – framework backend.  
 - [Bootstrap 5](https://getbootstrap.com/) – estilização responsiva.  
 - [MySQL/MariaDB](https://www.mysql.com/) – banco de dados relacional.
-- [Docker & Docker Compose](https://www.docker.com/)    
+<!-- - [Docker & Docker Compose](https://www.docker.com/)     -->
 - [Blade Templates](https://laravel.com/docs/blade) – sistema de views do Laravel.  
 - [Composer](https://getcomposer.org/) – gerenciamento de dependências PHP.  
 - [NPM](https://www.npmjs.com/) – gerenciamento de pacotes frontend.  
@@ -95,7 +95,7 @@ book-of-shadows/
 
 ---
 
-## 🐳 Execução com Docker
+<!-- ## 🐳 Execução com Docker
 
 Se preferir rodar a aplicação em containers:
 
@@ -198,9 +198,9 @@ networks:
 
 volumes:
   db_data:
-```
+``` -->
 
----
+<!-- --- -->
 
 ## 🧙 Dashboard Administrativo
 
@@ -211,6 +211,9 @@ Permite gerenciar:
 * 🕸️ **Categorias e Tags**
 * 💀 **Histórias de usuários**
 * 🩸 **Relatos do Boletim Macabro**
+* 🎭 **Review de Filmes, Séries e Livros** (para usuários autenticados)
+* 🔒 **Controle de Acesso** (usuários, permissões)
+* 🔍 **Busca e Filtros** (para posts, histórias, relatos)
 
 ---
 
@@ -235,7 +238,7 @@ O projeto inclui um **painel administrativo** acessível apenas para usuários a
 <!-- > As imagens devem ser colocadas na pasta:
 > `public/screenshots/` -->
 
-Você pode ajustar os nomes ou caminhos conforme a estrutura do seu projeto.
+<!-- Você pode ajustar os nomes ou caminhos conforme a estrutura do seu projeto. -->
 
 ---
 
