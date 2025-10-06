@@ -6,6 +6,7 @@ use App\Http\Controllers\HorrorStoriesController;
 use App\Http\Controllers\CreateLegendController;
 use App\Http\Controllers\MacabreNewsletterController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,13 @@ Route::get('/crie-sua-lenda', [CreateLegendController::class, 'create'])->name('
 Route::post('/crie-sua-lenda', [CreateLegendController::class, 'store'])->name('store-legend');
 
 Route::get('/boletim-macabro', [MacabreNewsletterController::class, 'index'])->name('macabre-newsletter');
+
+// Rotas para reviews (dicas e avaliações)
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
+Route::get('/filmes', [ReviewController::class, 'byType'])->defaults('type', 'movie')->name('reviews.movies');
+Route::get('/livros', [ReviewController::class, 'byType'])->defaults('type', 'book')->name('reviews.books');
+Route::get('/series', [ReviewController::class, 'byType'])->defaults('type', 'series')->name('reviews.series');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
