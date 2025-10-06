@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('type', ['movie', 'book', 'series']);
             $table->string('author_director')->nullable();
             $table->string('genre')->nullable();
-            $table->year('release_year')->nullable();
+            $table->integer('release_year')->nullable();
             $table->decimal('rating', 3, 1)->nullable(); // 0.0 to 10.0
             $table->string('image_url')->nullable();
             $table->string('trailer_url')->nullable();
