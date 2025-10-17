@@ -34,6 +34,7 @@ Route::get('/historia-do-halloween', [HalloweenController::class, 'history'])->n
 Route::get('/grimorio/feiticos', [GrimoireController::class, 'spells'])->name('grimoire.spells');
 Route::get('/grimorio/rituais', [GrimoireController::class, 'rituals'])->name('grimoire.rituals');
 Route::get('/grimorio/herbologia', [GrimoireController::class, 'herbology'])->name('grimoire.herbology');
+Route::get('/grimorio/comece', [GrimoireController::class, 'create'])->name('grimoire.create');
 
 // Rotas para reviews (dicas e avaliações)
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');

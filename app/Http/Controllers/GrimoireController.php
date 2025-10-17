@@ -20,4 +20,9 @@ class GrimoireController extends Controller
     {
         return view('grimoire.herbology');
     }
+
+    public function create()
+    {
+        return view('grimoire.create');
+    }
 }

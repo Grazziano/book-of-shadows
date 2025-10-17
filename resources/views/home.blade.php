@@ -425,7 +425,7 @@
         <div class="hero-content pulse">
             <h1 class="float">Seu Grimório Digital</h1>
             <p>Descubra os segredos ancestrais e registre sua jornada mágica neste Halloween</p>
-            <a href="{{ route('register') }}" class="btn">Comece sua Jornada</a>
+            <a href="{{ route('grimoire.create') }}" class="btn">Comece sua Jornada</a>
         </div>
     </section>
 
