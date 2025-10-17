@@ -16,7 +16,7 @@
             --text-color: #a9a9a9; /* Cinza */
             --shadow-color: rgba(0, 0, 0, 0.9);
         }
-        
+
         body {
             margin: 0;
             padding: 0;
@@ -26,13 +26,13 @@
             font-family: 'EB Garamond', serif;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         header {
             background-color: var(--secondary-color);
             padding: 20px 0;
@@ -40,7 +40,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         header::before {
             content: "";
             position: absolute;
@@ -52,14 +52,14 @@
             opacity: 0.1;
             z-index: 0;
         }
-        
+
         .auth-buttons {
             display: flex;
             gap: 10px;
             position: relative;
             z-index: 1;
         }
-        
+
         .btn-login, .btn-register, .btn-logout {
             padding: 8px 15px;
             border-radius: 3px;
@@ -73,31 +73,31 @@
             border: 1px solid;
             cursor: pointer;
         }
-        
+
         .btn-login {
             background-color: transparent;
             color: var(--accent-color);
             border-color: var(--accent-color);
         }
-        
+
         .btn-register {
             background-color: var(--highlight-color);
             color: var(--text-color);
             border-color: var(--highlight-color);
         }
-        
+
         .btn-logout {
             background-color: var(--secondary-color);
             color: var(--text-color);
             border-color: var(--secondary-color);
         }
-        
+
         .btn-login:hover, .btn-register:hover, .btn-logout:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px var(--shadow-color);
             filter: brightness(1.2);
         }
-        
+
         .header-content {
             position: relative;
             z-index: 1;
@@ -105,18 +105,18 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .auth-buttons {
                 margin-top: 10px;
             }
         }
-        
+
         .logo {
             font-family: 'Creepster', cursive;
             font-size: 2.5rem;
@@ -124,18 +124,18 @@
             text-shadow: 2px 2px 4px var(--shadow-color);
             margin: 0;
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        
+
         nav ul li {
             margin-left: 30px;
         }
-        
+
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
@@ -143,11 +143,11 @@
             transition: color 0.3s;
             position: relative;
         }
-        
+
         nav ul li a:hover {
             color: var(--accent-color);
         }
-        
+
         nav ul li a::after {
             content: "";
             position: absolute;
@@ -158,11 +158,11 @@
             background-color: var(--accent-color);
             transition: width 0.3s;
         }
-        
+
         nav ul li a:hover::after {
             width: 100%;
         }
-        
+
         .hero {
             height: 80vh;
             display: flex;
@@ -176,7 +176,7 @@
             background-position: center;
             border-bottom: 3px solid var(--highlight-color);
         }
-        
+
         .hero-content {
             text-align: center;
             max-width: 800px;
@@ -188,7 +188,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .hero-content::before {
             content: "";
             position: absolute;
@@ -200,7 +200,7 @@
             border-radius: 3px;
             z-index: -1;
         }
-        
+
         .hero h1 {
             font-family: 'Creepster', cursive;
             font-size: 4.5rem;
@@ -209,7 +209,7 @@
             text-shadow: 3px 3px 8px var(--shadow-color), 0 0 15px var(--highlight-color);
             letter-spacing: 2px;
         }
-        
+
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
@@ -217,7 +217,7 @@
             text-shadow: 1px 1px 3px var(--shadow-color);
             font-style: italic;
         }
-        
+
         .btn {
             display: inline-block;
             background-color: var(--highlight-color);
@@ -233,20 +233,20 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(139, 0, 0, 0.3);
             letter-spacing: 1px;
         }
-        
+
         .btn:hover {
             background-color: #6b0000;
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), 0 0 15px rgba(139, 0, 0, 0.5);
             border-color: var(--accent-color);
         }
-        
+
         .features {
             padding: 80px 0;
             background-color: var(--primary-color);
             position: relative;
         }
-        
+
         .features::before {
             content: "";
             position: absolute;
@@ -258,7 +258,7 @@
             opacity: 0.2;
             z-index: 0;
         }
-        
+
         .section-title {
             text-align: center;
             font-family: 'Creepster', cursive;
@@ -269,7 +269,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -277,7 +277,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .feature-card {
             background-color: rgba(44, 13, 26, 0.8);
             border: 1px solid var(--accent-color);
@@ -286,37 +286,41 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px var(--shadow-color);
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px var(--shadow-color);
         }
-        
+
         .feature-icon {
             font-size: 3rem;
             color: var(--accent-color);
             margin-bottom: 20px;
         }
-        
+
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--accent-color);
         }
-        
+
         .feature-card p {
             font-size: 1.1rem;
             color: var(--text-color);
         }
-        
+
         footer {
             background-color: var(--secondary-color);
             padding: 40px 0;
             text-align: center;
             position: relative;
         }
-        
+
         footer::before {
             content: "";
             position: absolute;
@@ -328,16 +332,16 @@
             opacity: 0.1;
             z-index: 0;
         }
-        
+
         .footer-content {
             position: relative;
             z-index: 1;
         }
-        
+
         .social-links {
             margin-bottom: 20px;
         }
-        
+
         .social-links a {
             display: inline-block;
             margin: 0 10px;
@@ -345,69 +349,69 @@
             font-size: 1.5rem;
             transition: color 0.3s;
         }
-        
+
         .social-links a:hover {
             color: var(--accent-color);
         }
-        
+
         .copyright {
             font-size: 1rem;
             color: var(--text-color);
         }
-        
+
         /* Animações e efeitos especiais */
         @keyframes flicker {
             0%, 100% { opacity: 1; text-shadow: 2px 2px 4px var(--shadow-color), 0 0 10px var(--highlight-color); }
             50% { opacity: 0.7; text-shadow: 2px 2px 4px var(--shadow-color), 0 0 20px var(--highlight-color); }
         }
-        
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-        
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        
+
         .flicker {
             animation: flicker 3s infinite alternate;
         }
-        
+
         .pulse {
             animation: pulse 4s infinite alternate;
         }
-        
+
         .float {
             animation: float 6s infinite ease-in-out;
         }
-        
+
         /* Responsividade */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             nav ul {
                 margin-top: 20px;
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             nav ul li {
                 margin: 10px 0;
             }
-            
+
             .hero h1 {
                 font-size: 3rem;
             }
-            
+
             .hero p {
                 font-size: 1.2rem;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -421,7 +425,7 @@
         <div class="hero-content pulse">
             <h1 class="float">Seu Grimório Digital</h1>
             <p>Descubra os segredos ancestrais e registre sua jornada mágica neste Halloween</p>
-            <a href="#" class="btn">Comece sua Jornada</a>
+            <a href="{{ route('register') }}" class="btn">Comece sua Jornada</a>
         </div>
     </section>
 
@@ -429,21 +433,21 @@
         <div class="container">
             <h2 class="section-title">Poderes do Grimório</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <a href="{{ route('grimoire.spells') }}" class="feature-card">
                     <div class="feature-icon">🔮</div>
                     <h3>Feitiços Antigos</h3>
                     <p>Acesse uma coleção de feitiços ancestrais e encantamentos poderosos para todas as ocasiões.</p>
-                </div>
-                <div class="feature-card">
+                </a>
+                <a href="{{ route('grimoire.rituals') }}" class="feature-card">
                     <div class="feature-icon">🌙</div>
                     <h3>Rituais Lunares</h3>
                     <p>Aprenda rituais alinhados com as fases da lua para potencializar suas intenções e manifestações.</p>
-                </div>
-                <div class="feature-card">
+                </a>
+                <a href="{{ route('grimoire.herbology') }}" class="feature-card">
                     <div class="feature-icon">🌿</div>
                     <h3>Herbologia Mágica</h3>
                     <p>Descubra as propriedades mágicas das ervas e como utilizá-las em seus trabalhos esotéricos.</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>

@@ -29,6 +29,19 @@ Route::get('/boletim-macabro', [MacabreNewsletterController::class, 'index'])->n
 
 Route::get('/historia-do-halloween', [HalloweenController::class, 'history'])->name('halloween.history');
 
+// Rotas para o Grimório
+Route::get('/grimorio/feiticos', function () {
+    return view('grimoire.spells');
+})->name('grimoire.spells');
+
+Route::get('/grimorio/rituais', function () {
+    return view('grimoire.rituals');
+})->name('grimoire.rituals');
+
+Route::get('/grimorio/herbologia', function () {
+    return view('grimoire.herbology');
+})->name('grimoire.herbology');
+
 // Rotas para reviews (dicas e avaliações)
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
