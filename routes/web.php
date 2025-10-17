@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrbanLegendsController;
 use App\Http\Controllers\HorrorStoriesController;
 use App\Http\Controllers\CreateLegendController;
+use App\Http\Controllers\GrimoireController;
 use App\Http\Controllers\MacabreNewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReviewController;
@@ -30,17 +31,9 @@ Route::get('/boletim-macabro', [MacabreNewsletterController::class, 'index'])->n
 Route::get('/historia-do-halloween', [HalloweenController::class, 'history'])->name('halloween.history');
 
 // Rotas para o Grimório
-Route::get('/grimorio/feiticos', function () {
-    return view('grimoire.spells');
-})->name('grimoire.spells');
-
-Route::get('/grimorio/rituais', function () {
-    return view('grimoire.rituals');
-})->name('grimoire.rituals');
-
-Route::get('/grimorio/herbologia', function () {
-    return view('grimoire.herbology');
-})->name('grimoire.herbology');
+Route::get('/grimorio/feiticos', [GrimoireController::class, 'spells'])->name('grimoire.spells');
+Route::get('/grimorio/rituais', [GrimoireController::class, 'rituals'])->name('grimoire.rituals');
+Route::get('/grimorio/herbologia', [GrimoireController::class, 'herbology'])->name('grimoire.herbology');
 
 // Rotas para reviews (dicas e avaliações)
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
