@@ -23,12 +23,12 @@ class DashboardController extends Controller
             'categories' => Category::count(),
             'tags' => Tag::count(),
         ];
-        
+
         $recent_posts = Post::with(['category', 'user'])
                             ->orderBy('created_at', 'desc')
                             ->limit(5)
                             ->get();
-        
+
         return view('admin.dashboard', compact('stats', 'recent_posts'));
     }
 }

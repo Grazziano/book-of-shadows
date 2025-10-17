@@ -13,7 +13,7 @@ class ReviewController extends Controller
     public function index(Request $request)
     {
         $type = $request->get('type');
-        
+
         $reviews = Review::published()
             ->when($type, function ($query, $type) {
                 return $query->byType($type);

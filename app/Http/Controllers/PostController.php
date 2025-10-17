@@ -15,7 +15,7 @@ class PostController extends Controller
         $post = Post::with(['category', 'tags', 'user'])
                    ->where('status', 'published')
                    ->findOrFail($id);
-        
+
         return view('posts.show', compact('post'));
     }
 }

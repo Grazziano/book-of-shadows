@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        
+
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('categories', 'public');
         }
@@ -83,7 +83,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        
+
         if ($request->hasFile('image')) {
             // Remover imagem antiga se existir
             if ($category->image) {
@@ -104,12 +104,12 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrFail($id);
-        
+
         // Remover imagem se existir
         if ($category->image) {
             Storage::disk('public')->delete($category->image);
         }
-        
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')

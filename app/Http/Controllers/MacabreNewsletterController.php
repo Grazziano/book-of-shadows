@@ -34,7 +34,7 @@ class MacabreNewsletterController extends Controller
 
         // Combinar todos os posts em uma única coleção
         $allPosts = collect();
-        
+
         // Adicionar posts
         foreach ($posts as $post) {
             $allPosts->push([
@@ -127,7 +127,7 @@ class MacabreNewsletterController extends Controller
     private function determineUrgency($category)
     {
         $category = strtolower($category);
-        
+
         if (in_array($category, ['terror', 'horror', 'crítica'])) {
             return 'crítica';
         } elseif (in_array($category, ['suspense', 'psicológico', 'alta'])) {
