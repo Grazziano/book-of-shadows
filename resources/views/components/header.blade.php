@@ -24,20 +24,24 @@
                 <li><a href="{{ route('halloween.history') }}">História do Halloween</a></li>
                 <!-- Dropdown de Histórias -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Histórias <span
-                            class="chevron">▼</span></a>
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Histórias
+                        <span class="chevron">▼</span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
                         <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
-                @if (auth()->check())
-                    <li><a href="{{ route('create-legend') }}">Crie sua Lenda</a></li>
-                @endif
                 <li><a href="{{ route('macabre-newsletter') }}">Boletim Macabro</a></li>
                 @if (auth()->check())
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Minha Conta
+                            <span class="chevron">▼</span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ route('create-legend') }}">Crie sua Lenda</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </nav>
