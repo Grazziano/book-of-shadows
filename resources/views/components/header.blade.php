@@ -21,8 +21,14 @@
         <nav class="main-nav" id="main-nav">
             <ul class="nav-links">
                 <li><a href="{{ route('halloween.history') }}">História do Halloween</a></li>
-                <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
-                <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
+                <!-- Dropdown de Histórias -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Histórias <span class="chevron">▼</span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('urban-legends') }}">Lendas Urbanas</a></li>
+                        <li><a href="{{ route('horror-stories') }}">Contos de Terror</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
                 @if(auth()->check())
                 <li><a href="{{ route('create-legend') }}">Crie sua Lenda</a></li>
@@ -66,12 +72,27 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.classList.remove('active');
         });
     });
+
+    // Toggle do dropdown em mobile (sem afetar desktop hover)
+    const dropdownToggles = document.querySelectorAll('.dropdown .dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            // Se nav estiver em modo mobile (menu ativo) ou viewport pequena
+            if (window.innerWidth <= 768 || nav.classList.contains('active')) {
+                e.preventDefault();
+                const parent = toggle.closest('.dropdown');
+                parent.classList.toggle('open');
+            }
+        });
+    });
     
-    // Fechar menu ao clicar fora
+    // Fechar menu e dropdown ao clicar fora
     document.addEventListener('click', function(event) {
-        if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+        const clickedOutsideMenu = !hamburger.contains(event.target) && !nav.contains(event.target);
+        if (clickedOutsideMenu) {
             hamburger.classList.remove('active');
             nav.classList.remove('active');
+            document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
         }
     });
 });
