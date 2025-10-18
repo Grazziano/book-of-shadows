@@ -11,9 +11,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-color);
-    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+    background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
     color: var(--text-color);
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     line-height: 1.6;
 }
 
@@ -39,7 +39,7 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://www.transparenttextures.com/patterns/skulls.png');
+    background-image: url("https://www.transparenttextures.com/patterns/skulls.png");
     opacity: 0.1;
     z-index: 0;
 }
@@ -54,7 +54,7 @@ header::before {
 }
 
 .logo {
-    font-family: 'Creepster', cursive;
+    font-family: "Creepster", cursive;
     font-size: 2.5rem;
     color: var(--accent-color);
     text-shadow: 2px 2px 4px var(--shadow-color);
@@ -69,8 +69,13 @@ header::before {
 }
 
 @keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
 }
 
 /* Menu Hambúrguer */
@@ -147,8 +152,8 @@ header::before {
 }
 
 .nav-links li a:hover::after {
-        width: 100%;
-    }
+    width: 100%;
+}
 
 /* Dropdown */
 .nav-links .dropdown {
@@ -211,10 +216,12 @@ header::before {
     flex-shrink: 0;
 }
 
-.btn-login, .btn-register, .btn-logout {
+.btn-login,
+.btn-register,
+.btn-logout {
     padding: 8px 15px;
     border-radius: 3px;
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -244,7 +251,9 @@ header::before {
     border-color: var(--secondary-color);
 }
 
-.btn-login:hover, .btn-register:hover, .btn-logout:hover {
+.btn-login:hover,
+.btn-register:hover,
+.btn-logout:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow-color);
     filter: brightness(1.2);
@@ -273,7 +282,11 @@ header::before {
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        background: linear-gradient(
+            135deg,
+            var(--secondary-color),
+            var(--primary-color)
+        );
         transition: left 0.3s ease;
         z-index: 9;
         padding-top: 80px;
@@ -312,11 +325,29 @@ header::before {
     }
 
     /* Dropdown em mobile */
-    .nav-links .dropdown { width: 100%; }
-    .nav-links .dropdown .dropdown-toggle { width: 100%; display: flex; justify-content: space-between; padding: 15px 0; }
-    .nav-links .dropdown .dropdown-menu { position: static; display: none; padding: 0 0 10px 10px; background: transparent; border: none; box-shadow: none; }
-    .nav-links .dropdown.open .dropdown-menu { display: block; }
-    .nav-links .dropdown .dropdown-menu a { padding: 10px 0; }
+    .nav-links .dropdown {
+        width: 100%;
+    }
+    .nav-links .dropdown .dropdown-toggle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+    }
+    .nav-links .dropdown .dropdown-menu {
+        position: static;
+        display: none;
+        padding: 0 0 10px 10px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+    .nav-links .dropdown.open .dropdown-menu {
+        display: block;
+    }
+    .nav-links .dropdown .dropdown-menu a {
+        padding: 10px 0;
+    }
 
     .header-content {
         flex-wrap: nowrap;
@@ -331,7 +362,9 @@ header::before {
         gap: 8px;
     }
 
-    .btn-login, .btn-register, .btn-logout {
+    .btn-login,
+    .btn-register,
+    .btn-logout {
         padding: 6px 12px;
         font-size: 0.8rem;
     }
@@ -351,7 +384,9 @@ header::before {
         gap: 5px;
     }
 
-    .btn-login, .btn-register, .btn-logout {
+    .btn-login,
+    .btn-register,
+    .btn-logout {
         padding: 5px 10px;
         font-size: 0.75rem;
     }
