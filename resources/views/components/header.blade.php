@@ -9,14 +9,14 @@
 <header>
     <div class="container header-content">
         <h1 class="logo flicker" onclick="window.location.href = '/';">Book of Shadows</h1>
-        
+
         <!-- Menu Hambúrguer -->
         <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        
+
         <!-- Navegação Principal -->
         <nav class="main-nav" id="main-nav">
             <ul class="nav-links">
@@ -39,7 +39,7 @@
                 @endif
             </ul>
         </nav>
-        
+
         <div class="auth-buttons">
             @if(auth()->check())
             <form method="POST" action="{{ route('logout') }}">
@@ -58,12 +58,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-menu');
     const nav = document.getElementById('main-nav');
-    
+
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         nav.classList.toggle('active');
     });
-    
+
     // Fechar menu ao clicar em um link
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Fechar menu e dropdown ao clicar fora
     document.addEventListener('click', function(event) {
         const clickedOutsideMenu = !hamburger.contains(event.target) && !nav.contains(event.target);

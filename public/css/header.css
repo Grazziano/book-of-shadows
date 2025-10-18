@@ -28,7 +28,8 @@ header {
     padding: 20px 0;
     box-shadow: 0 4px 12px var(--shadow-color);
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* permitir dropdown transbordar */
+    z-index: 1000; /* header acima do conteúdo */
 }
 
 header::before {
@@ -183,7 +184,7 @@ header::before {
     min-width: 220px;
     padding: 10px 0;
     box-shadow: 0 4px 12px var(--shadow-color);
-    z-index: 20;
+    z-index: 10000; /* garantir sobreposição */
 }
 
 .nav-links .dropdown .dropdown-menu li {
@@ -254,7 +255,7 @@ header::before {
     .nav-links {
         gap: 20px;
     }
-    
+
     .nav-links li a {
         font-size: 1rem;
     }
@@ -264,7 +265,7 @@ header::before {
     .hamburger-menu {
         display: flex;
     }
-    
+
     .main-nav {
         position: fixed;
         top: 0;
@@ -278,34 +279,34 @@ header::before {
         padding-top: 80px;
         box-shadow: 2px 0 10px var(--shadow-color);
     }
-    
+
     .main-nav.active {
         left: 0;
     }
-    
+
     .nav-links {
         flex-direction: column;
         gap: 0;
         width: 100%;
         padding: 20px;
     }
-    
+
     .nav-links li {
         width: 100%;
         border-bottom: 1px solid rgba(169, 169, 169, 0.2);
     }
-    
+
     .nav-links li:last-child {
         border-bottom: none;
     }
-    
+
     .nav-links li a {
         display: block;
         padding: 15px 0;
         font-size: 1.1rem;
         border-bottom: none;
     }
-    
+
     .nav-links li a::after {
         display: none;
     }
@@ -316,20 +317,20 @@ header::before {
     .nav-links .dropdown .dropdown-menu { position: static; display: none; padding: 0 0 10px 10px; background: transparent; border: none; box-shadow: none; }
     .nav-links .dropdown.open .dropdown-menu { display: block; }
     .nav-links .dropdown .dropdown-menu a { padding: 10px 0; }
-    
+
     .header-content {
         flex-wrap: nowrap;
         gap: 15px;
     }
-    
+
     .logo {
         font-size: 2rem;
     }
-    
+
     .auth-buttons {
         gap: 8px;
     }
-    
+
     .btn-login, .btn-register, .btn-logout {
         padding: 6px 12px;
         font-size: 0.8rem;
@@ -340,16 +341,16 @@ header::before {
     .container {
         padding: 0 15px;
     }
-    
+
     .logo {
         font-size: 1.8rem;
     }
-    
+
     .auth-buttons {
         flex-direction: column;
         gap: 5px;
     }
-    
+
     .btn-login, .btn-register, .btn-logout {
         padding: 5px 10px;
         font-size: 0.75rem;
