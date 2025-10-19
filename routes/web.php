@@ -10,11 +10,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HalloweenController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/lendas-urbanas', [UrbanLegendsController::class, 'index'])->name('urban-legends');
 Route::get('/lendas-urbanas/{id}', [UrbanLegendsController::class, 'show'])->name('urban-legends.show');
