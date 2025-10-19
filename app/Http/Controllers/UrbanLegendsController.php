@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Legend;
 
@@ -116,6 +117,12 @@ class UrbanLegendsController extends Controller
             'tags' => $legends->tags->pluck('name')->toArray()
         ];
 
-        return view('urban-legends.show', compact('legend'));
+        $comments = Comment::with('user')
+            ->where('target_type', 'urban-legends')
+            ->where('target_id', $legends->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('urban-legends.show', ['legend' => $legend, 'comments' => $comments]);
     }
 }

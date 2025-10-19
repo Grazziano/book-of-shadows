@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $legend['title'] }} - Lendas Urbanas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #8B0000;
@@ -73,8 +75,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(247, 37, 133, 0.5); }
-            to { text-shadow: 0 0 30px rgba(247, 37, 133, 0.8), 0 0 40px rgba(247, 37, 133, 0.6); }
+            from {
+                text-shadow: 0 0 20px rgba(247, 37, 133, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(247, 37, 133, 0.8), 0 0 40px rgba(247, 37, 133, 0.6);
+            }
         }
 
         .legend-meta {
@@ -103,16 +110,31 @@
             letter-spacing: 1px;
         }
 
-        .danger-baixo { background: #2E7D32; color: white; }
-        .danger-médio { background: #F57C00; color: white; }
-        .danger-alto { background: #D32F2F; color: white; }
-        .danger-extremo { background: #4A148C; color: white; }
+        .danger-baixo {
+            background: #2E7D32;
+            color: white;
+        }
+
+        .danger-médio {
+            background: #F57C00;
+            color: white;
+        }
+
+        .danger-alto {
+            background: #D32F2F;
+            color: white;
+        }
+
+        .danger-extremo {
+            background: #4A148C;
+            color: white;
+        }
 
         .legend-content {
             background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             border: 2px solid var(--primary-color);
             margin-bottom: 40px;
         }
@@ -225,19 +247,21 @@
         }
     </style>
 </head>
+
 <body>
     <x-header />
-    
+
     <div class="container">
         <a href="{{ route('urban-legends') }}" class="back-button">← Voltar às Lendas Urbanas</a>
 
         <div class="legend-header">
             <h1 class="legend-title">{{ $legend['title'] }}</h1>
-            
+
             <div class="legend-meta">
                 <div class="meta-item">📍 {{ $legend['origin'] }}</div>
                 <div class="meta-item">🏷️ {{ $legend['category'] }}</div>
-                <div class="danger-level danger-{{ strtolower(str_replace(['á', 'é'], ['a', 'e'], $legend['danger_level'])) }}">
+                <div
+                    class="danger-level danger-{{ strtolower(str_replace(['á', 'é'], ['a', 'e'], $legend['danger_level'])) }}">
                     ⚠️ {{ $legend['danger_level'] }}
                 </div>
             </div>
@@ -248,16 +272,16 @@
                 👻
             </div>
 
-            @if($legend['summary'] && $legend['summary'] !== $legend['full_content'])
-            <div class="legend-summary">
-                "{{ $legend['summary'] }}"
-            </div>
+            @if ($legend['summary'] && $legend['summary'] !== $legend['full_content'])
+                <div class="legend-summary">
+                    "{{ $legend['summary'] }}"
+                </div>
             @endif
 
             <div class="warning-box">
                 <div class="warning-icon">⚠️</div>
                 <div class="warning-text">
-                    Esta lenda urbana pode conter conteúdo perturbador. 
+                    Esta lenda urbana pode conter conteúdo perturbador.
                     Prossiga com cautela.
                 </div>
             </div>
@@ -266,21 +290,27 @@
                 {!! nl2br(e($legend['full_content'])) !!}
             </div>
 
-            @if(!empty($legend['tags']))
-            <div class="tags-section">
-                <div class="tags-title">🏷️ Tags relacionadas:</div>
-                <div class="tags-list">
-                    @foreach($legend['tags'] as $tag)
-                        <span class="tag">{{ $tag }}</span>
-                    @endforeach
+            @if (!empty($legend['tags']))
+                <div class="tags-section">
+                    <div class="tags-title">🏷️ Tags relacionadas:</div>
+                    <div class="tags-list">
+                        @foreach ($legend['tags'] as $tag)
+                            <span class="tag">{{ $tag }}</span>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
             @endif
 
             <div class="published-date">
                 📅 Publicado em: {{ \Carbon\Carbon::parse($legend['published_date'])->format('d/m/Y') }}
             </div>
         </div>
+
+        @include('components.comments', [
+            'targetType' => 'urban-legends',
+            'targetId' => $legend['id'],
+            'comments' => $comments,
+        ])
     </div>
 
     <script>
@@ -289,7 +319,7 @@
             const content = document.querySelector('.legend-content');
             content.style.opacity = '0';
             content.style.transform = 'translateY(30px)';
-            
+
             setTimeout(() => {
                 content.style.transition = 'all 0.6s ease';
                 content.style.opacity = '1';
@@ -302,10 +332,11 @@
         backButton.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-2px)';
         });
-        
+
         backButton.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
     </script>
 </body>
+
 </html>
