@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lendas Urbanas - Boletim Macabro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #8B0000;
@@ -38,7 +40,7 @@
         .page-header {
             text-align: center;
             padding: 60px 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="fog" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23fog)"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="fog" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23fog)"/></svg>');
             background-size: cover;
             background-position: center;
             border-bottom: 3px solid var(--primary-color);
@@ -56,8 +58,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px var(--primary-color); }
-            to { text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color); }
+            from {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-color);
+            }
+
+            to {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+            }
         }
 
         .page-subtitle {
@@ -79,7 +86,7 @@
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             border: 2px solid transparent;
             position: relative;
@@ -130,7 +137,7 @@
             font-size: 1.5rem;
             color: var(--accent-color);
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .legend-summary {
@@ -201,7 +208,7 @@
             /* color: var(--primary-color); */
             color: var(--accent-color);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -234,6 +241,7 @@
         }
     </style>
 </head>
+
 <body>
     <x-header />
     <div class="page-header">
@@ -250,7 +258,7 @@
         <a href="/" class="back-button">← Voltar ao Início</a>
 
         <div class="legends-grid">
-            @foreach($legends as $index => $legend)
+            @foreach ($legends as $index => $legend)
                 <a href="{{ route('urban-legends.show', $legend['id']) }}" class="legend-link">
                     <div class="legend-card loading-animation" style="animation-delay: {{ $index * 0.1 }}s">
                         <div class="danger-level danger-{{ strtolower($legend['danger_level']) }}">
@@ -275,6 +283,8 @@
             @endforeach
         </div>
     </div>
+
+    @include('components.footer')
 
     <script>
         // Adiciona efeitos de animação quando os cards entram na viewport
@@ -308,4 +318,5 @@
         });
     </script>
 </body>
+
 </html>

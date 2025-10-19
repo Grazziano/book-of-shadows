@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $newsletter['edition'] }} - Boletim Macabro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a0b2e;
@@ -75,8 +78,15 @@
         }
 
         @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
         }
 
         @keyframes fadeInDown {
@@ -84,6 +94,7 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -101,8 +112,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .featured-article {
@@ -167,6 +185,7 @@
                 opacity: 0;
                 transform: translateX(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -190,12 +209,29 @@
             animation: fadeInUp 0.8s ease-out both;
         }
 
-        .article-card:nth-child(1) { animation-delay: 0.1s; }
-        .article-card:nth-child(2) { animation-delay: 0.2s; }
-        .article-card:nth-child(3) { animation-delay: 0.3s; }
-        .article-card:nth-child(4) { animation-delay: 0.4s; }
-        .article-card:nth-child(5) { animation-delay: 0.5s; }
-        .article-card:nth-child(6) { animation-delay: 0.6s; }
+        .article-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .article-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .article-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .article-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .article-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .article-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
 
         .article-card:hover {
             transform: translateY(-5px);
@@ -256,8 +292,15 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .article-title {
@@ -300,6 +343,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -354,6 +398,7 @@
         }
     </style>
 </head>
+
 <body>
     @include('components.header')
 
@@ -367,48 +412,49 @@
         </header>
 
         <div class="weather-alert">
-            <strong>⚠️ Alerta Paranormal:</strong> {{ $newsletter['weather_forecast']['condition'] }} - {{ $newsletter['weather_forecast']['temperature'] }}
+            <strong>⚠️ Alerta Paranormal:</strong> {{ $newsletter['weather_forecast']['condition'] }} -
+            {{ $newsletter['weather_forecast']['temperature'] }}
             <br><small>{{ $newsletter['weather_forecast']['warning'] }}</small>
         </div>
 
         <article class="featured-article">
             <div class="featured-badge">Destaque</div>
-            @if(isset($newsletter['featured_article']['url']))
+            @if (isset($newsletter['featured_article']['url']))
                 <a href="{{ $newsletter['featured_article']['url'] }}" class="featured-link">
             @endif
-                <h2 class="featured-title">{{ $newsletter['featured_article']['title'] }}</h2>
-                <div class="featured-meta">
-                    <span>📅 {{ $newsletter['featured_article']['date'] }}</span>
-                    <span>🏷️ {{ $newsletter['featured_article']['category'] }}</span>
-                    @if(isset($newsletter['featured_article']['author']))
-                        <span>✍️ {{ $newsletter['featured_article']['author'] }}</span>
-                    @endif
-                </div>
-                <p class="featured-summary">{{ $newsletter['featured_article']['summary'] }}</p>
-            @if(isset($newsletter['featured_article']['url']))
+            <h2 class="featured-title">{{ $newsletter['featured_article']['title'] }}</h2>
+            <div class="featured-meta">
+                <span>📅 {{ $newsletter['featured_article']['date'] }}</span>
+                <span>🏷️ {{ $newsletter['featured_article']['category'] }}</span>
+                @if (isset($newsletter['featured_article']['author']))
+                    <span>✍️ {{ $newsletter['featured_article']['author'] }}</span>
+                @endif
+            </div>
+            <p class="featured-summary">{{ $newsletter['featured_article']['summary'] }}</p>
+            @if (isset($newsletter['featured_article']['url']))
                 </a>
             @endif
         </article>
 
         <section class="articles-grid">
-            @foreach($newsletter['articles'] as $article)
+            @foreach ($newsletter['articles'] as $article)
                 <article class="article-card">
                     <div class="urgency-badge urgency-{{ $article['urgency'] }}">
                         {{ ucfirst($article['urgency']) }}
                     </div>
-                    @if(isset($article['url']))
+                    @if (isset($article['url']))
                         <a href="{{ $article['url'] }}" class="article-link">
                     @endif
-                        <h3 class="article-title">{{ $article['title'] }}</h3>
-                        <div class="article-meta">
-                            <span class="article-date">📅 {{ $article['date'] }}</span>
-                            <span class="article-category">🏷️ {{ $article['category'] }}</span>
-                            @if(isset($article['author']))
-                                <span class="article-author">✍️ {{ $article['author'] }}</span>
-                            @endif
-                        </div>
-                        <p class="article-summary">{{ $article['summary'] }}</p>
-                    @if(isset($article['url']))
+                    <h3 class="article-title">{{ $article['title'] }}</h3>
+                    <div class="article-meta">
+                        <span class="article-date">📅 {{ $article['date'] }}</span>
+                        <span class="article-category">🏷️ {{ $article['category'] }}</span>
+                        @if (isset($article['author']))
+                            <span class="article-author">✍️ {{ $article['author'] }}</span>
+                        @endif
+                    </div>
+                    <p class="article-summary">{{ $article['summary'] }}</p>
+                    @if (isset($article['url']))
                         </a>
                     @endif
                 </article>
@@ -470,5 +516,8 @@
             });
         });
     </script>
+
+    @include('components.footer')
 </body>
+
 </html>

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crie sua Lenda - Book of Shadows</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a0b2e;
@@ -62,8 +65,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(247, 37, 133, 0.5); }
-            to { text-shadow: 0 0 30px rgba(247, 37, 133, 0.8), 0 0 40px rgba(247, 37, 133, 0.6); }
+            from {
+                text-shadow: 0 0 20px rgba(247, 37, 133, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(247, 37, 133, 0.8), 0 0 40px rgba(247, 37, 133, 0.6);
+            }
         }
 
         @keyframes fadeInDown {
@@ -71,6 +79,7 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -91,6 +100,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -119,7 +129,9 @@
             font-size: 1.1rem;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 0.8rem;
             border: 2px solid var(--border-color);
@@ -131,7 +143,9 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--secondary-color);
             box-shadow: 0 0 15px rgba(114, 9, 183, 0.3);
@@ -207,6 +221,7 @@
                 opacity: 0;
                 transform: translateX(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -246,6 +261,7 @@
         }
     </style>
 </head>
+
 <body>
     @include('components.header')
 
@@ -257,16 +273,16 @@
             <p>Compartilhe sua história sombria com o mundo</p>
         </div>
 
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
 
-        @if($errors->any())
+        @if ($errors->any())
             <div class="alert alert-error">
                 <ul style="margin: 0; padding-left: 1.5rem;">
-                    @foreach($errors->all() as $error)
+                    @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -292,7 +308,8 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="location">Local da Lenda *</label>
-                        <input type="text" id="location" name="location" value="{{ old('location') }}" placeholder="Ex: São Paulo, SP" required>
+                        <input type="text" id="location" name="location" value="{{ old('location') }}"
+                            placeholder="Ex: São Paulo, SP" required>
                     </div>
 
                     <div class="form-group">
@@ -300,10 +317,13 @@
                         <select id="category" name="category" required>
                             <option value="">Selecione uma categoria</option>
                             <option value="urbana" {{ old('category') == 'urbana' ? 'selected' : '' }}>Urbana</option>
-                            <option value="sobrenatural" {{ old('category') == 'sobrenatural' ? 'selected' : '' }}>Sobrenatural</option>
-                            <option value="psicologica" {{ old('category') == 'psicologica' ? 'selected' : '' }}>Psicológica</option>
+                            <option value="sobrenatural" {{ old('category') == 'sobrenatural' ? 'selected' : '' }}>
+                                Sobrenatural</option>
+                            <option value="psicologica" {{ old('category') == 'psicologica' ? 'selected' : '' }}>
+                                Psicológica</option>
                             <option value="gotica" {{ old('category') == 'gotica' ? 'selected' : '' }}>Gótica</option>
-                            <option value="folclorica" {{ old('category') == 'folclorica' ? 'selected' : '' }}>Folclórica</option>
+                            <option value="folclorica" {{ old('category') == 'folclorica' ? 'selected' : '' }}>
+                                Folclórica</option>
                         </select>
                     </div>
                 </div>
@@ -320,24 +340,29 @@
                             <span class="star" data-rating="5">★</span>
                         </div>
                         <span>Mortal</span>
-                        <input type="hidden" id="danger_level" name="danger_level" value="{{ old('danger_level', 1) }}">
+                        <input type="hidden" id="danger_level" name="danger_level"
+                            value="{{ old('danger_level', 1) }}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="content">Conte sua Lenda *</label>
-                    <textarea id="content" name="content" placeholder="Descreva sua lenda urbana em detalhes. Seja criativo e assustador!" required>{{ old('content') }}</textarea>
+                    <textarea id="content" name="content" placeholder="Descreva sua lenda urbana em detalhes. Seja criativo e assustador!"
+                        required>{{ old('content') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="moral">Moral da História (opcional)</label>
-                    <textarea id="moral" name="moral" placeholder="Qual é a lição ou aviso que sua lenda transmite?" style="min-height: 100px;">{{ old('moral') }}</textarea>
+                    <textarea id="moral" name="moral" placeholder="Qual é a lição ou aviso que sua lenda transmite?"
+                        style="min-height: 100px;">{{ old('moral') }}</textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">Criar Minha Lenda</button>
             </form>
         </div>
     </div>
+
+    @include('components.footer')
 
     <script>
         // Sistema de avaliação por estrelas
@@ -405,4 +430,5 @@
         });
     </script>
 </body>
+
 </html>

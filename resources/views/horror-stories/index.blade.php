@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contos de Terror - Boletim Macabro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #8B0000;
@@ -40,8 +43,8 @@
         .page-header {
             text-align: center;
             padding: 80px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="manuscript" patternUnits="userSpaceOnUse" width="100" height="20"><line x1="0" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23manuscript)"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="manuscript" patternUnits="userSpaceOnUse" width="100" height="20"><line x1="0" y1="10" x2="100" y2="10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23manuscript)"/></svg>');
             background-size: cover;
             background-position: center;
             border-bottom: 3px solid var(--primary-color);
@@ -74,11 +77,14 @@
         }
 
         @keyframes flicker {
-            0%, 100% {
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px var(--primary-color);
+
+            0%,
+            100% {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-color);
             }
+
             50% {
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
             }
         }
 
@@ -105,7 +111,7 @@
             color: var(--ink-color);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             transition: all 0.4s ease;
             border: 1px solid #D4C5A9;
             position: relative;
@@ -118,7 +124,7 @@
 
         .story-card:hover {
             transform: rotate(0deg) translateY(-15px);
-            box-shadow: 0 25px 50px rgba(139,0,0,0.4);
+            box-shadow: 0 25px 50px rgba(139, 0, 0, 0.4);
             border-color: var(--primary-color);
         }
 
@@ -174,7 +180,7 @@
             font-family: 'Butcherman', cursive;
             font-size: 1.8rem;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 1;
         }
@@ -200,7 +206,7 @@
         }
 
         .story-preview {
-            background: rgba(139,0,0,0.1);
+            background: rgba(139, 0, 0, 0.1);
             border-left: 4px solid var(--primary-color);
             padding: 15px;
             margin: 20px 0;
@@ -222,10 +228,10 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            background: rgba(139,0,0,0.1);
+            background: rgba(139, 0, 0, 0.1);
             padding: 5px 10px;
             border-radius: 15px;
-            border: 1px solid rgba(139,0,0,0.3);
+            border: 1px solid rgba(139, 0, 0, 0.3);
         }
 
         .story-tags {
@@ -262,7 +268,7 @@
             background: transparent;
             color: var(--primary-color);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
         }
 
         .back-button {
@@ -284,7 +290,7 @@
             /* color: var(--primary-color); */
             color: var(--accent-color);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(139,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
         }
 
         .filter-section {
@@ -365,6 +371,7 @@
         }
     </style>
 </head>
+
 <body>
     <x-header />
 
@@ -382,7 +389,8 @@
         <a href="/" class="back-button">← Voltar ao Início</a>
 
         <div class="filter-section">
-            <h3 style="color: var(--text-color); margin-bottom: 20px; font-family: 'Butcherman', cursive;">Filtrar por Categoria</h3>
+            <h3 style="color: var(--text-color); margin-bottom: 20px; font-family: 'Butcherman', cursive;">Filtrar por
+                Categoria</h3>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="Fantasmas">Fantasmas</button>
@@ -393,8 +401,9 @@
         </div>
 
         <div class="stories-grid">
-            @foreach($stories as $index => $story)
-                <article class="story-card loading-animation" data-category="{{ $story['category'] }}" style="animation-delay: {{ $index * 0.15 }}s">
+            @foreach ($stories as $index => $story)
+                <article class="story-card loading-animation" data-category="{{ $story['category'] }}"
+                    style="animation-delay: {{ $index * 0.15 }}s">
                     <div class="horror-level horror-{{ strtolower($story['horror_level']) }}">
                         {{ $story['horror_level'] }}
                     </div>
@@ -424,19 +433,22 @@
                         </div>
 
                         <div class="story-tags">
-                            @if(!empty($story['tags']))
-                                @foreach($story['tags'] as $tag)
+                            @if (!empty($story['tags']))
+                                @foreach ($story['tags'] as $tag)
                                     <span class="tag">{{ $tag }}</span>
                                 @endforeach
                             @endif
                         </div>
 
-                        <a href="{{ route('horror-stories.show', $story['id']) }}" class="read-more-btn">Ler Conto Completo</a>
+                        <a href="{{ route('horror-stories.show', $story['id']) }}" class="read-more-btn">Ler Conto
+                            Completo</a>
                     </div>
                 </article>
             @endforeach
         </div>
     </div>
+
+    @include('components.footer')
 
     <script>
         // Sistema de filtros
@@ -453,7 +465,8 @@
                 const filterValue = button.getAttribute('data-filter');
 
                 storyCards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    if (filterValue === 'all' || card.getAttribute('data-category') ===
+                        filterValue) {
                         card.style.display = 'block';
                         card.style.animation = 'fadeInRotate 0.6s ease forwards';
                     } else {
@@ -514,4 +527,5 @@
         setTimeout(typeWriter, 500);
     </script>
 </body>
+
 </html>

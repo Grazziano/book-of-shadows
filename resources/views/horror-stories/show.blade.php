@@ -81,8 +81,6 @@
             ])
         </div>
 
-        <script></script>
-
         <style>
             .horror-story-show {
                 min-height: 100vh;
@@ -330,6 +328,8 @@
                 animation-delay: 0.2s;
             }
         </style>
+
+        @include('components.footer')
 </body>
 
 </html>

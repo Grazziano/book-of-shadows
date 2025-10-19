@@ -313,6 +313,8 @@
         ])
     </div>
 
+    @include('components.footer')
+
     <script>
         // Efeito de entrada suave
         document.addEventListener('DOMContentLoaded', function() {

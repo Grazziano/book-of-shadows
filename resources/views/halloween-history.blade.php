@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>História do Halloween - Book of Shadows</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -42,10 +45,10 @@
         .page-header {
             text-align: center;
             padding: 100px 0 80px;
-            background: 
+            background:
                 radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(139,0,0,0.8) 100%);
+                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.8) 100%);
             position: relative;
             margin-bottom: 40px;
         }
@@ -65,7 +68,7 @@
             font-family: 'Creepster', cursive;
             font-size: 4rem;
             color: var(--orange-glow);
-            text-shadow: 
+            text-shadow:
                 0 0 20px var(--orange-glow),
                 0 0 40px var(--orange-glow),
                 0 0 60px var(--orange-glow);
@@ -76,8 +79,15 @@
         }
 
         @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
         }
 
         .page-subtitle {
@@ -314,13 +324,34 @@
             z-index: -1;
         }
 
-        .pumpkin-1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .pumpkin-2 { top: 60%; right: 15%; animation-delay: 2s; }
-        .pumpkin-3 { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .pumpkin-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .pumpkin-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .pumpkin-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
         }
 
         @media (max-width: 768px) {
@@ -352,6 +383,7 @@
         }
     </style>
 </head>
+
 <body>
     <x-header />
 
@@ -376,12 +408,13 @@
         </a>
 
         <div class="intro-section">
-            <h2 style="font-family: 'Butcherman', cursive; font-size: 2rem; color: var(--orange-glow); margin-bottom: 20px;">
+            <h2
+                style="font-family: 'Butcherman', cursive; font-size: 2rem; color: var(--orange-glow); margin-bottom: 20px;">
                 As Raízes Ancestrais do Halloween
             </h2>
             <p style="font-size: 1.2rem; line-height: 1.8;">
-                O Halloween, conhecido como a noite mais assombrada do ano, tem suas raízes profundamente enterradas 
-                na história antiga. Esta celebração, que hoje associamos com fantasias, doces e travessuras, 
+                O Halloween, conhecido como a noite mais assombrada do ano, tem suas raízes profundamente enterradas
+                na história antiga. Esta celebração, que hoje associamos com fantasias, doces e travessuras,
                 nasceu de rituais sagrados e crenças sobrenaturais que remontam a mais de 2.000 anos.
             </p>
         </div>
@@ -393,9 +426,9 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Samhain - O Festival Celta</h3>
                     <p class="timeline-description">
-                        Os antigos celtas celebravam Samhain (pronuncia-se "sow-in") no final de outubro, 
-                        marcando o fim da colheita e o início do inverno. Acreditavam que nesta noite, 
-                        o véu entre o mundo dos vivos e dos mortos se tornava mais fino, permitindo que 
+                        Os antigos celtas celebravam Samhain (pronuncia-se "sow-in") no final de outubro,
+                        marcando o fim da colheita e o início do inverno. Acreditavam que nesta noite,
+                        o véu entre o mundo dos vivos e dos mortos se tornava mais fino, permitindo que
                         espíritos retornassem à Terra.
                     </p>
                 </div>
@@ -407,8 +440,8 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Conquista Romana</h3>
                     <p class="timeline-description">
-                        Quando os romanos conquistaram as terras celtas, eles combinaram Samhain com seus 
-                        próprios festivais: Feralia (honrando os mortos) e um dia dedicado a Pomona, 
+                        Quando os romanos conquistaram as terras celtas, eles combinaram Samhain com seus
+                        próprios festivais: Feralia (honrando os mortos) e um dia dedicado a Pomona,
                         deusa das frutas - origem da tradição de "bobbing for apples".
                     </p>
                 </div>
@@ -420,8 +453,8 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Cristianização</h3>
                     <p class="timeline-description">
-                        O Papa Gregório III designou 1º de novembro como Dia de Todos os Santos (All Saints' Day), 
-                        tentando substituir Samhain. A noite anterior ficou conhecida como All Hallows' Eve, 
+                        O Papa Gregório III designou 1º de novembro como Dia de Todos os Santos (All Saints' Day),
+                        tentando substituir Samhain. A noite anterior ficou conhecida como All Hallows' Eve,
                         que eventualmente se tornou Halloween.
                     </p>
                 </div>
@@ -433,8 +466,8 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Chegada à América</h3>
                     <p class="timeline-description">
-                        Imigrantes irlandeses, fugindo da Grande Fome, trouxeram suas tradições de Halloween 
-                        para a América. Inicialmente limitado às comunidades irlandesas, gradualmente se 
+                        Imigrantes irlandeses, fugindo da Grande Fome, trouxeram suas tradições de Halloween
+                        para a América. Inicialmente limitado às comunidades irlandesas, gradualmente se
                         espalhou por todo o país.
                     </p>
                 </div>
@@ -446,8 +479,8 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Secularização</h3>
                     <p class="timeline-description">
-                        O Halloween se tornou mais secular e comunitário. As tradições de vandalismo foram 
-                        substituídas por festas organizadas, desfiles e atividades para crianças, 
+                        O Halloween se tornou mais secular e comunitário. As tradições de vandalismo foram
+                        substituídas por festas organizadas, desfiles e atividades para crianças,
                         transformando-se na celebração familiar que conhecemos hoje.
                     </p>
                 </div>
@@ -459,8 +492,8 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Era dos Doces</h3>
                     <p class="timeline-description">
-                        O "trick-or-treating" se tornou uma tradição nacional nos EUA. As empresas de doces 
-                        começaram a comercializar produtos específicos para Halloween, estabelecendo a 
+                        O "trick-or-treating" se tornou uma tradição nacional nos EUA. As empresas de doces
+                        começaram a comercializar produtos específicos para Halloween, estabelecendo a
                         conexão duradoura entre a data e os doces.
                     </p>
                 </div>
@@ -473,43 +506,43 @@
                 <div class="fact-card">
                     <div class="fact-icon">🎃</div>
                     <h3 class="fact-title">Jack-o'-Lantern Original</h3>
-                    <p>Na Irlanda, as primeiras "lanternas do Jack" eram feitas de nabos, batatas e beterrabas. 
-                    As abóboras só foram adotadas quando a tradição chegou à América.</p>
+                    <p>Na Irlanda, as primeiras "lanternas do Jack" eram feitas de nabos, batatas e beterrabas.
+                        As abóboras só foram adotadas quando a tradição chegou à América.</p>
                 </div>
 
                 <div class="fact-card">
                     <div class="fact-icon">🦇</div>
                     <h3 class="fact-title">Morcegos e Halloween</h3>
-                    <p>A associação com morcegos vem dos festivais celtas, onde grandes fogueiras atraíam 
-                    insetos, que por sua vez atraíam morcegos - criando uma atmosfera naturalmente sombria.</p>
+                    <p>A associação com morcegos vem dos festivais celtas, onde grandes fogueiras atraíam
+                        insetos, que por sua vez atraíam morcegos - criando uma atmosfera naturalmente sombria.</p>
                 </div>
 
                 <div class="fact-card">
                     <div class="fact-icon">🐱</div>
                     <h3 class="fact-title">Gatos Pretos</h3>
-                    <p>Na Idade Média, acreditava-se que gatos pretos eram familiares de bruxas. 
-                    Ironicamente, em algumas culturas, eles são símbolos de boa sorte.</p>
+                    <p>Na Idade Média, acreditava-se que gatos pretos eram familiares de bruxas.
+                        Ironicamente, em algumas culturas, eles são símbolos de boa sorte.</p>
                 </div>
 
                 <div class="fact-card">
                     <div class="fact-icon">👻</div>
                     <h3 class="fact-title">Fantasias</h3>
-                    <p>Originalmente, as pessoas se vestiam como fantasmas e demônios para se disfarçar 
-                    dos espíritos malignos que supostamente vagavam na noite de Samhain.</p>
+                    <p>Originalmente, as pessoas se vestiam como fantasmas e demônios para se disfarçar
+                        dos espíritos malignos que supostamente vagavam na noite de Samhain.</p>
                 </div>
 
                 <div class="fact-card">
                     <div class="fact-icon">🕷️</div>
                     <h3 class="fact-title">Aranhas da Sorte</h3>
-                    <p>Ver uma aranha no Halloween é considerado sinal de boa sorte, pois significa que 
-                    o espírito de um ente querido está cuidando de você.</p>
+                    <p>Ver uma aranha no Halloween é considerado sinal de boa sorte, pois significa que
+                        o espírito de um ente querido está cuidando de você.</p>
                 </div>
 
                 <div class="fact-card">
                     <div class="fact-icon">🌙</div>
                     <h3 class="fact-title">Lua Cheia</h3>
-                    <p>Uma lua cheia no Halloween é rara - a próxima ocorrerá em 2039. A última foi em 2020, 
-                    tornando aquele Halloween particularmente "mágico".</p>
+                    <p>Uma lua cheia no Halloween é rara - a próxima ocorrerá em 2039. A última foi em 2020,
+                        tornando aquele Halloween particularmente "mágico".</p>
                 </div>
             </div>
         </div>
@@ -517,16 +550,18 @@
         <div class="modern-halloween">
             <h2>Halloween Hoje</h2>
             <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 30px;">
-                Atualmente, o Halloween é a segunda maior celebração comercial nos Estados Unidos, 
-                movimentando bilhões de dólares anualmente. A tradição se espalhou pelo mundo, 
+                Atualmente, o Halloween é a segunda maior celebração comercial nos Estados Unidos,
+                movimentando bilhões de dólares anualmente. A tradição se espalhou pelo mundo,
                 adaptando-se às culturas locais enquanto mantém seu espírito de mistério e diversão.
             </p>
             <p style="font-size: 1.2rem; line-height: 1.8; color: var(--orange-glow);">
-                Do antigo ritual celta aos filmes de terror modernos, o Halloween continua a nos fascinar 
+                Do antigo ritual celta aos filmes de terror modernos, o Halloween continua a nos fascinar
                 com sua mistura única de medo e diversão, tradição e inovação, sagrado e profano.
             </p>
         </div>
     </div>
+
+    @include('components.footer')
 
     <script>
         // Animação de entrada para os itens da timeline
@@ -551,7 +586,7 @@
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelectorAll('.pumpkin-decoration');
-            
+
             parallax.forEach((element, index) => {
                 const speed = 0.5 + (index * 0.1);
                 element.style.transform = `translateY(${scrolled * speed}px)`;
@@ -559,4 +594,5 @@
         });
     </script>
 </body>
+
 </html>

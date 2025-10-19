@@ -298,6 +298,8 @@
         </div>
     </div>
 
+    @include('components.footer')
+
     <script>
         // Smooth scroll animation
         document.addEventListener('DOMContentLoaded', function() {
