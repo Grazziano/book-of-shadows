@@ -4,8 +4,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Creepster&family=EB+Garamond:wght@400;600&display=swap"
     rel="stylesheet">
 
-<!-- Header CSS -->
+{{-- Link to Font Awesome --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+{{-- Header CSS --}}
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+{{-- Footer CSS --}}
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
 <header>
     <div class="container header-content">

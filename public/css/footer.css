@@ -1,0 +1,154 @@
+.site-footer {
+    background-color: #1a1a2e;
+    color: #e6e6e6;
+    padding: 40px 0 0;
+    border-top: 1px solid #333;
+    font-family: "Georgia", serif;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    color: #c19c6c;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.footer-section h4 {
+    color: #c19c6c;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #b8b8b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #c19c6c;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    color: #b8b8b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.social-links a:hover {
+    color: #c19c6c;
+    transform: translateX(5px);
+}
+
+/* .social-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+} */
+
+.fa-brands {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+}
+
+.footer-bottom {
+    background-color: #0f0f1a;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+}
+
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.copyright {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-legal a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #c19c6c;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .footer-bottom .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .social-links a {
+        flex-direction: column;
+        text-align: center;
+        margin: 0 10px;
+    }
+
+    .social-icon {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
