@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Story;
+use App\Models\Comment;
 
 class HorrorStoriesController extends Controller
 {
@@ -61,7 +62,14 @@ class HorrorStoriesController extends Controller
             'tags' => [] // Adicionando tags vazio por enquanto
         ];
 
-        return view('horror-stories.show', ['story' => $storyData]);
+        // Comentários deste conto
+        $comments = Comment::with('user')
+            ->where('target_type', 'horror-stories')
+            ->where('target_id', $story->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('horror-stories.show', ['story' => $storyData, 'comments' => $comments]);
     }
 
     // Fallback para dados fictícios (removido para usar apenas dados do banco)

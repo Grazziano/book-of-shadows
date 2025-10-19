@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -50,7 +51,14 @@ class ReviewController extends Controller
             ->limit(3)
             ->get();
 
-        return view('reviews.show', compact('review', 'relatedReviews'));
+        // Comentários dessa review
+        $comments = Comment::with('user')
+            ->where('target_type', 'reviews')
+            ->where('target_id', $review->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('reviews.show', compact('review', 'relatedReviews', 'comments'));
     }
 
     /**

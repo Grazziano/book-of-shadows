@@ -290,6 +290,11 @@
                     </div>
                 </div>
             @endif
+            @include('components.comments', [
+                'targetType' => 'reviews',
+                'targetId' => $review->id,
+                'comments' => $comments,
+            ])
         </div>
     </div>
 

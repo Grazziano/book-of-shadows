@@ -74,6 +74,11 @@
                 </div>
             </div>
 
+            @include('components.comments', [
+                'targetType' => 'horror-stories',
+                'targetId' => $story['id'],
+                'comments' => $comments,
+            ])
         </div>
 
         <script></script>
