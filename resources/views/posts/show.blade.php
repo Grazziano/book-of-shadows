@@ -38,7 +38,7 @@
             line-height: 1.6;
         }
 
-        .container {
+        .post-show .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
@@ -209,7 +209,7 @@
         }
 
         @media (max-width: 768px) {
-            .container {
+            .post-show .container {
                 padding: 1rem;
             }
 
@@ -234,58 +234,63 @@
 </head>
 
 <body>
-    <div class="container">
-        <article class="post-article">
-            <header class="post-header">
-                <h1 class="post-title">{{ $post->title }}</h1>
-                <div class="post-meta">
-                    <span class="post-date">📅 {{ $post->published_at->format('d/m/Y') }}</span>
-                    @if ($post->category)
-                        <span class="post-category">🏷️ {{ $post->category->name }}</span>
+    @include('components.header')
+    <div class="post-show">
+        <div class="container">
+            <article class="post-article">
+                <header class="post-header">
+                    <h1 class="post-title">{{ $post->title }}</h1>
+                    <div class="post-meta">
+                        <span class="post-date">📅 {{ $post->published_at->format('d/m/Y') }}</span>
+                        @if ($post->category)
+                            <span class="post-category">🏷️ {{ $post->category->name }}</span>
+                        @endif
+                        @if ($post->user)
+                            <span class="post-author">✍️ {{ $post->user->name }}</span>
+                        @endif
+                    </div>
+                    @if ($post->excerpt)
+                        <div class="post-excerpt">
+                            {{ $post->excerpt }}
+                        </div>
                     @endif
-                    @if ($post->user)
-                        <span class="post-author">✍️ {{ $post->user->name }}</span>
-                    @endif
-                </div>
-                @if ($post->excerpt)
-                    <div class="post-excerpt">
-                        {{ $post->excerpt }}
+                </header>
+
+                @if ($post->featured_image)
+                    <div class="post-image">
+                        <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}">
                     </div>
                 @endif
-            </header>
 
-            @if ($post->featured_image)
-                <div class="post-image">
-                    <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}">
+                <div class="post-content">
+                    {!! $post->content !!}
                 </div>
-            @endif
 
-            <div class="post-content">
-                {!! $post->content !!}
+                @if ($post->tags->count() > 0)
+                    <div class="post-tags">
+                        <strong>Tags:</strong>
+                        @foreach ($post->tags as $tag)
+                            <span class="tag">{{ $tag->name }}</span>
+                        @endforeach
+                    </div>
+                @endif
+            </article>
+
+            <div class="post-navigation">
+                <a href="{{ route('macabre-newsletter') }}" class="btn">
+                    ← Voltar ao Boletim Macabro
+                </a>
             </div>
 
-            @if ($post->tags->count() > 0)
-                <div class="post-tags">
-                    <strong>Tags:</strong>
-                    @foreach ($post->tags as $tag)
-                        <span class="tag">{{ $tag->name }}</span>
-                    @endforeach
-                </div>
-            @endif
-        </article>
-
-        <div class="post-navigation">
-            <a href="{{ route('macabre-newsletter') }}" class="btn">
-                ← Voltar ao Boletim Macabro
-            </a>
+            @include('components.comments', [
+                'targetType' => 'posts',
+                'targetId' => $post['id'],
+                'comments' => $comments,
+            ])
         </div>
 
-        @include('components.comments', [
-            'targetType' => 'posts',
-            'targetId' => $post['id'],
-            'comments' => $comments,
-        ])
     </div>
+    @include('components.footer')
 
     <style>
         .post-article {

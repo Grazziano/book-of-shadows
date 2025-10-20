@@ -107,7 +107,7 @@
                 pointer-events: none;
             }
 
-            .container {
+            .horror-story-show .container {
                 max-width: 800px;
                 margin: 0 auto;
                 padding: 0 1rem;
@@ -301,7 +301,7 @@
                     line-height: 1.7;
                 }
 
-                .container {
+                .horror-story-show .container {
                     padding: 0 0.5rem;
                 }
             }
