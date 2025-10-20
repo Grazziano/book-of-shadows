@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,30 +20,31 @@
             --blood-red: #8b0000;
             --burnt-orange: #cc5500;
         }
-        
+
         body {
             background-color: #f8f9fc;
             font-family: 'Nunito', sans-serif;
         }
-        
+
         .sidebar {
             background: linear-gradient(180deg, var(--dark-purple) 0%, var(--medium-purple) 100%);
             min-height: 100vh;
             color: white;
         }
-        
+
         .sidebar .nav-link {
             color: rgba(255, 255, 255, 0.8);
             padding: 1rem;
             border-left: 3px solid transparent;
         }
-        
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
             color: white;
             background-color: rgba(255, 255, 255, 0.1);
             border-left: 3px solid var(--burnt-orange);
         }
-        
+
         .sidebar .sidebar-brand {
             padding: 1.5rem;
             font-size: 1.2rem;
@@ -51,61 +53,62 @@
             background-color: var(--dark-purple);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .topbar {
             background-color: white;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
             border-bottom: 1px solid #e3e6f0;
         }
-        
+
         .card {
             border: none;
             border-radius: 0.35rem;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
         }
-        
+
         .card-header {
             background-color: #f8f9fc;
             border-bottom: 1px solid #e3e6f0;
         }
-        
+
         .border-left-primary {
             border-left: 0.25rem solid #4e73df !important;
         }
-        
+
         .border-left-success {
             border-left: 0.25rem solid #1cc88a !important;
         }
-        
+
         .border-left-info {
             border-left: 0.25rem solid #36b9cc !important;
         }
-        
+
         .border-left-warning {
             border-left: 0.25rem solid #f6c23e !important;
         }
-        
+
         .btn-primary {
             background-color: var(--medium-purple);
             border-color: var(--dark-purple);
         }
-        
+
         .btn-primary:hover {
             background-color: var(--dark-purple);
             border-color: var(--dark-purple);
         }
-        
+
         .btn-danger {
             background-color: var(--blood-red);
             border-color: var(--blood-red);
         }
-        
+
         .text-primary {
             color: var(--medium-purple) !important;
         }
     </style>
     @yield('styles')
 </head>
+
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
@@ -117,27 +120,38 @@
             <hr class="sidebar-divider my-0">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}"
+                        href="{{ route('admin.dashboard') }}">
                         <i class="fas fa-fw fa-tachometer-alt me-2"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/posts*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
+                    <a class="nav-link {{ request()->is('admin/posts*') ? 'active' : '' }}"
+                        href="{{ route('admin.posts.index') }}">
                         <i class="fas fa-fw fa-newspaper me-2"></i>
                         Posts
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/categories*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+                    <a class="nav-link {{ request()->is('admin/categories*') ? 'active' : '' }}"
+                        href="{{ route('admin.categories.index') }}">
                         <i class="fas fa-fw fa-folder me-2"></i>
                         Categorias
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/tags*') ? 'active' : '' }}" href="{{ route('admin.tags.index') }}">
+                    <a class="nav-link {{ request()->is('admin/tags*') ? 'active' : '' }}"
+                        href="{{ route('admin.tags.index') }}">
                         <i class="fas fa-fw fa-tags me-2"></i>
                         Tags
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/profile*') ? 'active' : '' }}"
+                        href="{{ route('profile.edit') }}">
+                        <i class="fa-solid fa-user me-2"></i>
+                        Profile
                     </a>
                 </li>
                 <hr class="sidebar-divider d-none d-md-block">
@@ -154,12 +168,8 @@
         <div id="content-wrapper" class="d-flex flex-column col-md-9 col-lg-10 ms-auto">
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button class="btn btn-link d-md-none rounded-circle me-3"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#sidebarMenu"
-                    aria-controls="sidebarMenu"
-                    aria-expanded="false"
+                <button class="btn btn-link d-md-none rounded-circle me-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
                     aria-label="Alternar navegação">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -192,18 +202,18 @@
 
             <!-- Main Content -->
             <div id="content">
-                @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
-                @if(session('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
                 @yield('content')
@@ -224,4 +234,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @yield('scripts')
 </body>
+
 </html>
