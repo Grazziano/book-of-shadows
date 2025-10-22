@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.main')
 
 @section('css-adicional')
     <link href="{{ asset('css/halloween-page.css') }}" rel="stylesheet">
