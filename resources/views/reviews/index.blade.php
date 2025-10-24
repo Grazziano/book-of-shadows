@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts.main')
+<title>
+    {{ $type ? ucfirst($type === 'movie' ? 'Filmes' : ($type === 'book' ? 'Livros' : 'Séries')) : 'Dicas e Avaliações' }}
+    - Book of Shadows</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {{ $type ? ucfirst($type === 'movie' ? 'Filmes' : ($type === 'book' ? 'Livros' : 'Séries')) : 'Dicas e Avaliações' }}
-        - Book of Shadows</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+@section('css-adicional')
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         :root {
             --primary-color: #8B0000;
@@ -56,11 +53,9 @@
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
     </style>
-</head>
+@endsection
 
-<body>
-    @include('components.header')
-
+@section('content')
     <div class="min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-black text-white">
         <!-- Header Section -->
         <div class="relative py-20 px-4 hero-bg">
@@ -138,8 +133,7 @@
                                     @if ($review->rating)
                                         <div class="flex items-center">
                                             <span class="rating-stars text-lg">★</span>
-                                            <span
-                                                class="ml-1 text-yellow-400 font-bold">{{ $review->rating }}/10</span>
+                                            <span class="ml-1 text-yellow-400 font-bold">{{ $review->rating }}/10</span>
                                         </div>
                                     @endif
                                 </div>
@@ -189,8 +183,7 @@
                                     @if ($review->rating)
                                         <div class="flex items-center">
                                             <span class="rating-stars text-lg">★</span>
-                                            <span
-                                                class="ml-1 text-yellow-400 font-bold">{{ $review->rating }}/10</span>
+                                            <span class="ml-1 text-yellow-400 font-bold">{{ $review->rating }}/10</span>
                                         </div>
                                     @endif
                                 </div>
@@ -227,8 +220,6 @@
         </div>
     </div>
 
-    @include('components.footer')
-
     <script>
         // Smooth scroll animation for cards
         document.addEventListener('DOMContentLoaded', function() {
@@ -251,6 +242,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+@endsection
