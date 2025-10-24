@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $review->title }} - Book of Shadows</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+<title>{{ $review->title }} - Book of Shadows</title>
+
+@section('css-adicional')
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,11 +52,9 @@
             box-shadow: 0 10px 25px rgba(139, 0, 0, 0.4);
         }
     </style>
-</head>
+@endsection
 
-<body class="smooth-scroll">
-    @include('components.header')
-
+@section('content')
     <div class="min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-black text-white">
         <!-- Hero Section -->
         <div class="relative py-20 px-4 hero-bg">
@@ -181,9 +176,8 @@
                                 }
                             @endphp
                             @if ($videoId)
-                                <iframe class="w-full h-64 md:h-96"
-                                    src="https://www.youtube.com/embed/{{ $videoId }}" frameborder="0"
-                                    allowfullscreen>
+                                <iframe class="w-full h-64 md:h-96" src="https://www.youtube.com/embed/{{ $videoId }}"
+                                    frameborder="0" allowfullscreen>
                                 </iframe>
                             @else
                                 <a href="{{ $review->trailer_url }}" target="_blank"
@@ -298,8 +292,6 @@
         </div>
     </div>
 
-    @include('components.footer')
-
     <script>
         // Smooth scroll animation
         document.addEventListener('DOMContentLoaded', function() {
@@ -322,6 +314,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+@endsection
